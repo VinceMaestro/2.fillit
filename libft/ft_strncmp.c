@@ -1,42 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/12 13:35:52 by vpetit            #+#    #+#             */
-/*   Updated: 2017/01/12 20:22:32 by vpetit           ###   ########.fr       */
+/*   Created: 2016/11/07 21:04:18 by vpetit            #+#    #+#             */
+/*   Updated: 2017/01/03 17:04:48 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-# include "./libft/libft.h"
-
-# define LAST 1
-
-typedef struct s_matrix	t_matrix;
-typedef struct s_pos	t_pos;
-
-struct	s_matrix
+int		ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	char		name;
-	int			dim;
-	t_pos		*pos;
-	t_matrix	*first;
-	t_matrix	*next;
-};
+	size_t			count;
+	unsigned char	*conv_s1;
+	unsigned char	*conv_s2;
 
-struct	s_pos
-{
-	int		x;
-	int		y;
-	int		z;
-};
-
-void		ft_error(char	*msg);
-void		ft_getstr(int open_fd, char *line);
-
-#endif
+	count = 0;
+	conv_s1 = (unsigned char*)s1;
+	conv_s2 = (unsigned char*)s2;
+	if (n == 0)
+		return (0);
+	while (count < n - 1 && conv_s1[count] && conv_s1[count] == conv_s2[count])
+		count += 1;
+	return (conv_s1[count] - conv_s2[count]);
+}

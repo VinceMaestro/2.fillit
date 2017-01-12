@@ -1,42 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/12 13:35:52 by vpetit            #+#    #+#             */
-/*   Updated: 2017/01/12 20:22:32 by vpetit           ###   ########.fr       */
+/*   Created: 2016/12/21 20:30:45 by vpetit            #+#    #+#             */
+/*   Updated: 2017/01/04 00:58:47 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
+#include <stdlib.h>
 
-# include "./libft/libft.h"
-
-# define LAST 1
-
-typedef struct s_matrix	t_matrix;
-typedef struct s_pos	t_pos;
-
-struct	s_matrix
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char		name;
-	int			dim;
-	t_pos		*pos;
-	t_matrix	*first;
-	t_matrix	*next;
-};
+	unsigned int	i;
+	char			*buff;
 
-struct	s_pos
-{
-	int		x;
-	int		y;
-	int		z;
-};
-
-void		ft_error(char	*msg);
-void		ft_getstr(int open_fd, char *line);
-
-#endif
+	i = 0;
+	if (s && f)
+	{
+		buff = (char*)malloc(sizeof(*buff) * (ft_strlen(s) + 1));
+		if (buff)
+		{
+			while (s[i])
+			{
+				buff[i] = f(i, s[i]);
+				i++;
+			}
+			buff[i] = '\0';
+		}
+	}
+	else
+		return (NULL);
+	return (buff);
+}

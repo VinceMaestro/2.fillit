@@ -1,42 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/12 13:35:52 by vpetit            #+#    #+#             */
-/*   Updated: 2017/01/12 20:22:32 by vpetit           ###   ########.fr       */
+/*   Created: 2016/11/08 10:31:04 by vpetit            #+#    #+#             */
+/*   Updated: 2017/01/04 00:58:02 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
+#include <stdlib.h>
 
-# include "./libft/libft.h"
-
-# define LAST 1
-
-typedef struct s_matrix	t_matrix;
-typedef struct s_pos	t_pos;
-
-struct	s_matrix
+char	*ft_strdup(char const *s1)
 {
-	char		name;
-	int			dim;
-	t_pos		*pos;
-	t_matrix	*first;
-	t_matrix	*next;
-};
+	char	*s1_copy;
+	int		s1_len;
+	int		i;
 
-struct	s_pos
-{
-	int		x;
-	int		y;
-	int		z;
-};
-
-void		ft_error(char	*msg);
-void		ft_getstr(int open_fd, char *line);
-
-#endif
+	s1_len = 0;
+	i = 0;
+	while (s1[s1_len] != '\0')
+		s1_len += 1;
+	s1_copy = (char*)malloc(sizeof(*s1_copy) * (s1_len + 1));
+	if (s1_copy != NULL)
+	{
+		while (i < s1_len)
+		{
+			s1_copy[i] = s1[i];
+			i += 1;
+		}
+		s1_copy[i] = '\0';
+	}
+	return (s1_copy);
+}

@@ -1,42 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_strequ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/12 13:35:52 by vpetit            #+#    #+#             */
-/*   Updated: 2017/01/12 20:22:32 by vpetit           ###   ########.fr       */
+/*   Created: 2016/12/21 20:30:55 by vpetit            #+#    #+#             */
+/*   Updated: 2017/01/03 17:04:29 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-# include "./libft/libft.h"
-
-# define LAST 1
-
-typedef struct s_matrix	t_matrix;
-typedef struct s_pos	t_pos;
-
-struct	s_matrix
+int	ft_strequ(char const *s1, char const *s2)
 {
-	char		name;
-	int			dim;
-	t_pos		*pos;
-	t_matrix	*first;
-	t_matrix	*next;
-};
+	int	i;
 
-struct	s_pos
-{
-	int		x;
-	int		y;
-	int		z;
-};
-
-void		ft_error(char	*msg);
-void		ft_getstr(int open_fd, char *line);
-
-#endif
+	i = 0;
+	if (s1 && s2)
+	{
+		while (s1[i] == s2[i] && s1[i] != '\0')
+			i++;
+		if (s1[i] == '\0' && s2[i] == '\0')
+			return (1);
+	}
+	return (0);
+}

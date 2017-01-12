@@ -1,42 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/12 13:35:52 by vpetit            #+#    #+#             */
-/*   Updated: 2017/01/12 20:22:32 by vpetit           ###   ########.fr       */
+/*   Created: 2016/12/08 19:24:58 by vpetit            #+#    #+#             */
+/*   Updated: 2017/01/04 00:40:50 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-# include "./libft/libft.h"
-
-# define LAST 1
-
-typedef struct s_matrix	t_matrix;
-typedef struct s_pos	t_pos;
-
-struct	s_matrix
+char	*ft_strrchr(char const *s, int c)
 {
-	char		name;
-	int			dim;
-	t_pos		*pos;
-	t_matrix	*first;
-	t_matrix	*next;
-};
-
-struct	s_pos
-{
-	int		x;
-	int		y;
-	int		z;
-};
-
-void		ft_error(char	*msg);
-void		ft_getstr(int open_fd, char *line);
-
-#endif
+	if (*s && *s == c)
+		return (ft_strrchr(s + 1, c) ? ft_strrchr(s + 1, c) : (char*)s);
+	else if (*s)
+		return (ft_strrchr(s + 1, c));
+	else if (*s == c)
+		return ((char*)s);
+	else
+		return (NULL);
+}

@@ -1,42 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/12 13:35:52 by vpetit            #+#    #+#             */
-/*   Updated: 2017/01/12 20:22:32 by vpetit           ###   ########.fr       */
+/*   Created: 2016/12/08 17:39:31 by vpetit            #+#    #+#             */
+/*   Updated: 2017/01/04 05:42:40 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-# include "./libft/libft.h"
-
-# define LAST 1
-
-typedef struct s_matrix	t_matrix;
-typedef struct s_pos	t_pos;
-
-struct	s_matrix
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	char		name;
-	int			dim;
-	t_pos		*pos;
-	t_matrix	*first;
-	t_matrix	*next;
-};
+	size_t	dst_len;
+	size_t	src_len;
+	char	*pos;
 
-struct	s_pos
-{
-	int		x;
-	int		y;
-	int		z;
-};
-
-void		ft_error(char	*msg);
-void		ft_getstr(int open_fd, char *line);
-
-#endif
+	dst_len = ft_strlen(dst);
+	src_len = ft_strlen(src);
+	pos = ft_memchr(dst, '\0', size);
+	if (!pos)
+		return (src_len + size);
+	if (size > dst_len + 1)
+	{
+		while (*src && (size_t)(pos - dst) < size - 1)
+			ft_memcpy(pos++, src++, 1);
+		*pos = '\0';
+	}
+	return (dst_len + src_len);
+}

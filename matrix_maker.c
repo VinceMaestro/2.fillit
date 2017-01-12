@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 18:59:36 by vpetit            #+#    #+#             */
-/*   Updated: 2017/01/12 16:23:24 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/01/12 17:45:34 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,33 +43,36 @@ static t_matrix	*ft_newmatrix(t_matrix* matrix, char *str)
 	new = (t_matrix*)malloc(sizeof(t_matrix));
 	(!(new) ? (ft_error()) : (new));
 	ft_initmatrix(matrix, new);
-	ft_strtomatrix(new->pos, str);
+	ft_strtopos(new->pos, str);
 	matrix = matrix->first;
 	return (new);
 }
 
-static void	ft_strtopos(t_pos *pos, char *str)
+static void	ft_savepos(t_pos *pos, x_pos, y_pos)
 {
-	int		piece_nb;
+	pos->x = x_pos;
+	pos->y = y_pos;
+	pos->z = 1;
+}
+
+static void	ft_strtopos(t_matrix *matrix, char *str)
+{
 	int		x_pos;
 	int		y_pos;
 	int		subunit_nb;
 	int		str_pos;
 
-	piece_nb = 0;
 	str_pos = 0;
-	while (str[str_pos])
+	while (str[str_pos + 1])
 	{
 		subunit_nb = 0;
 		x_pos = 0;
 		y_pos = 0;
-		while (subunit_nb < 4)
+		while (subunit_nb < 3 && str[str_pos])
 		{
 			if (str[str_pos] == '#')
 			{
-				pos[piece_nb][subunit_nb]->x = x_pos;
-				pos[piece_nb][subunit_nb]->y = y_pos;
-				pos[piece_nb][subunit_nb]->z = 1;
+				ft_savepos(&(matrix->pos[subunit_nb]), x_pos, y_pos)
 				x_pos++;
 				subunit_nb++;
 			}
@@ -78,9 +81,11 @@ static void	ft_strtopos(t_pos *pos, char *str)
 				y_pos--;
 				x_pos = 0;
 			}
-			else if (str[str_pos] != '#')
+			else if (str[str_pos] != '.')
 				ft_error();
 			str_pos++;
 		}
+		matrix = matrix->next;
 	}
+	matrix = matrix->first;
 }

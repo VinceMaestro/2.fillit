@@ -1,22 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/12 13:59:43 by vpetit            #+#    #+#             */
-/*   Updated: 2017/01/12 20:24:48 by vpetit           ###   ########.fr       */
+/*   Created: 2016/12/21 20:31:30 by vpetit            #+#    #+#             */
+/*   Updated: 2017/01/04 00:58:23 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 #include <stdlib.h>
 
-void	ft_error(char *msg)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	ft_putstr_fd("error ", 2);
-	ft_putstr_fd(msg, 2);
-	ft_putstr_fd("\n", 2);
-	exit(1);
+	unsigned int	len_s1;
+	unsigned int	len_s2;
+	char			*new;
+
+	if (s1 && s2)
+	{
+		len_s1 = ft_strlen(s1);
+		len_s2 = ft_strlen(s2);
+		new = (char*)malloc(sizeof(*new) * (len_s1 + len_s2 + 1));
+		if (new && s1 && s2)
+		{
+			ft_strcpy(new, s1);
+			ft_strcpy(&(new[len_s1]), s2);
+			new[len_s1 + len_s2] = '\0';
+		}
+		return (new);
+	}
+	return (NULL);
 }
