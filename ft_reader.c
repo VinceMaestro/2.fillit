@@ -6,15 +6,16 @@
 /*   By: ilarbi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 19:01:57 by ilarbi            #+#    #+#             */
-/*   Updated: 2017/01/12 19:07:35 by ilarbi           ###   ########.fr       */
+/*   Updated: 2017/01/12 22:47:10 by ilarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <stdlib.h>
-#include "libft.h"
+//#include "fillit.h"
 
 static	int	ft_isvalid_char(char c)
 {
@@ -31,28 +32,46 @@ static	int	ft_isvalid(char *input)
 
 	i = 0;
 	j = 0;
+	diese = 0;
 	while (*input)//file
 	{
-		while (*(input + 1) || *(input + 1) != '\n')//bloc
+		while (*input && (!*(input + 1) || *(input + 1) != '\n'))//bloc
 		{
 			while (*input != '\n' && ft_isvalid_char(*input))//line
 			{
 				((*input == '#') ? diese++ : diese);
+				printf("*input = %c\n", *input);
 				input++;
 				j++;
 			}
-			if (j > 3 || !ft_isvalid_char(*input) || diese > 4)
+			if (j != 4 || *input != '\n')
+			{
+				printf("fichier non valie j = %d *input = %c\n", j, *input);
 			//	ft_error ("fichier non valide\n");//exits pgm
 				exit(1);
-			diese = 0;
+			}
+			printf("*input de fin : %c\n", *input);
+			input++;//passer du \n a la ligne vide
 			j = 0;
 			i++;
 		}
+		if (diese != 4 || i != 4)
+		{
+			printf("fichier non valide: diese = %d i = %d\n", diese, i);
+			exit(1);
+		}
+		diese = 0;
+		i = 0;
+		input++;//2e \n ou \0
+		printf("*input boffff %c\n", *input);	
 		if (!*(input))
-		   return (i + 1);	
+		   return (i + 1);
+
 	}
 	return (0);
-	exit(1);//ft_error("chaine null ou vide\n");
+	printf("chaine null ou vide\n");
+	exit(1);
+	//ft_error("chaine null ou vide\n");//exits pgm
 }
 
 /*int		ft_reader(char	*input)
@@ -69,7 +88,7 @@ static	int	ft_isvalid(char *input)
 int		main(void)
 {
 
-	char *input = "##..\n##..\n##..\n....";
-	ft_putnbr(ft_isvalid(input));
+	char *input = "##..\n##..\n....\n....\n\n####\n....\n....\n....";
+	printf("%d\n", ft_isvalid(input));
 	return (0);
 }
