@@ -37,6 +37,7 @@ struct	s_pos
 };
 
 void		ft_error(char	*msg);
-void		ft_getstr(int open_fd, char *line);
+void		ft_getstr(int open_fd, char **line);
+int			ft_reader(char	*input);
 
 #endif

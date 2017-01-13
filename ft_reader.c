@@ -15,7 +15,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <stdlib.h>
-//#include "fillit.h"
+#include "fillit.h"
 
 static	int	ft_isvalid_char(char c)
 {
@@ -63,7 +63,7 @@ static	int	ft_isvalid(char *input)
 		diese = 0;
 		i = 0;
 		input++;//2e \n ou \0
-		printf("*input boffff %c\n", *input);	
+		printf("*input boffff %c\n", *input);
 		if (!*(input))
 		   return (i + 1);
 
@@ -74,7 +74,7 @@ static	int	ft_isvalid(char *input)
 	//ft_error("chaine null ou vide\n");//exits pgm
 }
 
-/*int		ft_reader(char	*input)
+int		ft_reader(char	*input)
 {
 	if (input)
 	{
@@ -83,12 +83,12 @@ static	int	ft_isvalid(char *input)
 	else
 		exit(1);
 	return (0);//ou 1 en cas de succes
-}*/
+}
 
-int		main(void)
+/*int		main(void)
 {
 
 	char *input = "##..\n##..\n....\n....\n\n####\n....\n....\n....";
 	printf("%d\n", ft_isvalid(input));
 	return (0);
-}
+}*/

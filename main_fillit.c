@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+// Test getstr: gcc main_fillit.c ft_getstr.c ./libft/ft_bzero.c ./libft/ft_memcpy.c libft/ft_putstr_fd.c ft_error.c -I libft/libft.h fillit.h
+
 #include "fillit.h"
 
 #include <sys/types.h>
@@ -27,6 +29,7 @@ static int	ft_display_file(char *argv)
 	char	**line;
 
 	open_fd = open(argv, O_RDWR);
+	//On ouvre le fichier passe en parametre
 	if (open_fd == -1)
 	{
 		ft_putstr_fd("open file () failed \n", 2);
@@ -35,9 +38,16 @@ static int	ft_display_file(char *argv)
 	line = (char**)malloc(sizeof(char*));
 	if (line)
 	{
-		ft_getstr(open_fd, *line);
-		printf("final line is : \n%s\n", line);
+		// getstr va passe l'adresse de line, dans laquelle sera stoquee notre ligne
+		// envoye *line a ta fonction pour
+		ft_getstr(open_fd, line);
+		printf("your string is : \n");
+		printf("%s", *line);
+
+		// Ici on appelle ta fonction avec en parametre notre string (la fonction est ok)
+		ft_reader(*line);
 	}
+	//on ferme le fichier
 	if (close(open_fd) == -1)
 	{
 		ft_putstr_fd("close file () failed \n", 2);

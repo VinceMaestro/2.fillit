@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
 
@@ -19,16 +18,12 @@ static void	*ft_memincr(void *src, int new_size)
 {
 	void	*buff;
 
-	printf("memincr ATTEMPT\n");
 	buff = (void*)malloc(sizeof(void) * (new_size + 1));
 	if (buff)
 	{
 		ft_bzero(buff, new_size + 1);
 		if (src)
-		{
 			ft_memcpy(buff, src, new_size);
-			printf("memincr SUCCESS buff is : %s\n", buff);
-		}
 	}
 	else
 		ft_error("memory allocation failed");
