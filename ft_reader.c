@@ -40,15 +40,14 @@ static	int	ft_isvalid(char *input)
 			while (*input != '\n' && ft_isvalid_char(*input))//line
 			{
 				((*input == '#') ? diese++ : diese);
-				printf("*input = %c\n", *input);
+				printf("*input = %c\n j = %i\n", *input, j);
 				input++;
 				j++;
 			}
 			if (j != 4 || *input != '\n')
 			{
 				printf("fichier non valie j = %d *input = %c\n", j, *input);
-			//	ft_error ("fichier non valide\n");//exits pgm
-				exit(1);
+				ft_error ("fichier non valide\n");
 			}
 			printf("*input de fin : %c\n", *input);
 			input++;//passer du \n a la ligne vide
