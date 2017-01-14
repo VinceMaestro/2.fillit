@@ -37,7 +37,7 @@ static	int	ft_isvalid(char *input)
 	pieces = 0;
 	while (*input)//file
 	{
-		while (*input != '\n' && (*input && *(input + 1) != '\n'))//bloc	
+		while (*input != '\n' && (*input && *(input + 1) != '\n'))//bloc
 		{
 			while (*input != '\n' && ft_isvalid_char(*input))//line
 			{
@@ -81,7 +81,9 @@ int		ft_reader(char	*input)
 int		main(void)
 {
 
-	char *input = "#...\n##..\n....\n....\n\n####\n....\n....\n....\n";
+	char *input = "#...\n###.\n....\n....\n\n####\n....\n....\n....\n";
+	printf("Your input is : \n%s\n", input);
+	printf("ft_reader return : \n");
 	printf("%d\n", ft_reader(input));
 	return (0);
 }
