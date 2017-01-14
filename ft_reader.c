@@ -6,7 +6,7 @@
 /*   By: ilarbi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 19:01:57 by ilarbi            #+#    #+#             */
-/*   Updated: 2017/01/12 22:47:10 by ilarbi           ###   ########.fr       */
+/*   Updated: 2017/01/13 13:42:51 by ilarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,65 +29,59 @@ static	int	ft_isvalid(char *input)
 	int		i;
 	int		j;
 	int		diese;
+	int		pieces;
 
 	i = 0;
 	j = 0;
 	diese = 0;
+	pieces = 0;
 	while (*input)//file
 	{
-		while (*input && (!*(input + 1) || *(input + 1) != '\n'))//bloc
+		while (*input != '\n' && (*input && *(input + 1) != '\n'))//bloc	
 		{
 			while (*input != '\n' && ft_isvalid_char(*input))//line
 			{
 				((*input == '#') ? diese++ : diese);
-				printf("*input = %c\n j = %i\n", *input, j);
+				printf(" %c ", *input);
 				input++;
 				j++;
 			}
 			if (j != 4 || *input != '\n')
-			{
-				printf("fichier non valie j = %d *input = %c\n", j, *input);
-				ft_error ("fichier non valide\n");
-			}
-			printf("*input de fin : %c\n", *input);
+				ft_error("fichier non valide : colonnes\n");//exits pgm
+			printf("%c", *input);
 			input++;//passer du \n a la ligne vide
 			j = 0;
 			i++;
 		}
+		printf("sortie de bloc\n");
 		if (diese != 4 || i != 4)
-		{
-			printf("fichier non valide: diese = %d i = %d\n", diese, i);
-			exit(1);
-		}
+			ft_error("fichrer non valide: diese ou lignes\n");
+		else
+			printf("bloc valide\n");
+		pieces++;
 		diese = 0;
 		i = 0;
+		if (*input == '\0')
+		   return (pieces);
 		input++;//2e \n ou \0
-		printf("*input boffff %c\n", *input);
-		if (!*(input))
-		   return (i + 1);
-
 	}
 	return (0);
-	printf("chaine null ou vide\n");
-	exit(1);
-	//ft_error("chaine null ou vide\n");//exits pgm
+	ft_error("chaine null ou vide\n");//exits pgm
 }
 
 int		ft_reader(char	*input)
 {
 	if (input)
 	{
-		ft_putnbr(ft_isvalid(input));
+		return (ft_isvalid(input));
 	}
-	else
-		exit(1);
-	return (0);//ou 1 en cas de succes
+	return (1);
 }
 
-/*int		main(void)
+int		main(void)
 {
 
-	char *input = "##..\n##..\n....\n....\n\n####\n....\n....\n....";
-	printf("%d\n", ft_isvalid(input));
+	char *input = "#...\n##..\n....\n....\n\n####\n....\n....\n....\n";
+	printf("%d\n", ft_reader(input));
 	return (0);
-}*/
+}
