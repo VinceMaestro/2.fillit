@@ -6,7 +6,7 @@
 /*   By: ilarbi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 19:01:57 by ilarbi            #+#    #+#             */
-/*   Updated: 2017/01/13 13:42:51 by ilarbi           ###   ########.fr       */
+/*   Updated: 2017/01/15 22:06:44 by ilarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static	int	ft_isvalid(char *input)
 		}
 		printf("sortie de bloc\n");
 		if (diese != 4 || i != 4)
-			ft_error("fichrer non valide: diese ou lignes\n");
+			//ft_error("fichrer non valide: diese ou lignes\n");
 		else
 			printf("bloc valide\n");
 		pieces++;
@@ -67,6 +67,17 @@ static	int	ft_isvalid(char *input)
 	}
 	return (0);
 	ft_error("chaine null ou vide\n");//exits pgm
+}
+
+int		ft_isvalid_shape(char *input)
+{
+	//square
+	/*if (*input == '#')
+	{
+		if (*(input + 1) == '#' && *(input + 2) == '#' && *(input + 3) == '#' || (*(input + 5) == '#' && *(input + 10) == '#' && *(input + 15) == '#' || *(input)//bar
+			return (1);
+	}*/
+
 }
 
 int		ft_reader(char	*input)
