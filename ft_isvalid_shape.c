@@ -6,7 +6,11 @@
 /*   By: ilarbi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 18:40:54 by ilarbi            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2017/01/15 22:21:19 by ilarbi           ###   ########.fr       */
+=======
+/*   Updated: 2017/01/15 22:04:41 by ilarbi           ###   ########.fr       */
+>>>>>>> 1b0cc8f405fffc7e4bee592329417012c4d384b9
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -78,6 +82,7 @@ int		main(void)
 		bloc[i++] = (char *)malloc(sizeof(char) * 5);
 	}
 	bloc = ft_strsplit(input, '\n');
+<<<<<<< HEAD
 	bloc[4] = 0;
 	i = 0;
 	while (i < 4)
@@ -92,6 +97,14 @@ int		main(void)
 		}
 	}
 
+=======
+	i = 0;
+	while (i < 16)
+	{
+		ft_strchr(bloc[i], '#');
+	}
+	bloc[4] = 0;
+>>>>>>> 1b0cc8f405fffc7e4bee592329417012c4d384b9
 	printf("%d\n", ft_isvalid_shape(bloc, 1, 2, &count));
 	return (0);
 }
