@@ -35,19 +35,6 @@ static int	ft_getmatrix(t_matrix* matrix, char name) // IF name = LAST (donc 1) 
 	return (0);
 }
 
-static t_matrix	*ft_newmatrix(t_matrix* matrix, char *str)
-{
-	t_matrix	*new;
-
-	ft_getmatrix(matrix, LAST);
-	new = (t_matrix*)malloc(sizeof(t_matrix));
-	(!(new) ? (ft_error()) : (new));
-	ft_initmatrix(matrix, new);
-	ft_strtopos(new->pos, str);
-	matrix = matrix->first;
-	return (new);
-}
-
 static void	ft_savepos(t_pos *pos, x_pos, y_pos)
 {
 	pos->x = x_pos;
@@ -88,4 +75,17 @@ static void	ft_strtopos(t_matrix *matrix, char *str)
 		matrix = matrix->next;
 	}
 	matrix = matrix->first;
+}
+
+t_matrix		*ft_matrix_maker(t_matrix* matrix, char *str)
+{
+	t_matrix	*new;
+
+	ft_getmatrix(matrix, LAST);
+	new = (t_matrix*)malloc(sizeof(t_matrix));
+	(!(new) ? (ft_error()) : (new));
+	ft_initmatrix(matrix, new);
+	ft_strtopos(new->pos, str);
+	matrix = matrix->first;
+	return (new);
 }
