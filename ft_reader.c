@@ -7,13 +7,11 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 19:01:57 by ilarbi            #+#    #+#             */
 /*   Updated: 2017/01/16 13:08:59 by ilarbi           ###   ########.fr       */
+/*   Updated: 2017/01/15 22:06:44 by ilarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
 #include <stdlib.h>
 #include "fillit.h"
 
