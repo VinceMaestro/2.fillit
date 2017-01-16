@@ -6,13 +6,11 @@
 /*   By: ilarbi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 18:40:54 by ilarbi            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2017/01/15 22:21:19 by ilarbi           ###   ########.fr       */
-=======
+/*   Updated: 2017/01/16 13:41:29 by ilarbi           ###   ########.fr       */
 /*   Updated: 2017/01/15 22:04:41 by ilarbi           ###   ########.fr       */
->>>>>>> 1b0cc8f405fffc7e4bee592329417012c4d384b9
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <stdio.h>
 #include "libft/libft.h"
 #include <stdlib.h>
