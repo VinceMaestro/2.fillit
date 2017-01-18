@@ -12,17 +12,38 @@
 
 #include "fillit.h"
 
-static void	ft_initmatrix(t_matrix *matrix, t_matrix *new int name)
+static void	ft_initmatrix(t_matrix *matrix, int dim)
 {
-	new->name = matrix->name + 1;
-	new->dim = matrix->dim;
+	t_matrix	*new;
+
+	new = (t_matrix*)malloc(sizeof(t_matrix));
+	(!(new) ? (ft_error("FAILED : malloc new")) : (new));
 	new->pos = (t_pos*)malloc(sizeof(t_pos) * 4);
-	(!(new->pos) ? (ft_error()) : (new));
-	new->first = matrix->first;
+	(!(new->pos) ? (ft_error("FAILED : malloc pos")) : (new));
+	ft_getmatrix(matrix, LAST);
+	new->name = 'A' + (matrix - matrix->first);
+	new->dim = dim;
+	((matrix->first) ? (new->first = matrix->first) :\
+		(new->first = new));
 	new->next = NULL;
-	matrix->next = new;
+	((matrix != new) ? (matrix->next = new) : (matrix));
+
+	}
+	else
+	{
+		new->name = matrix->name + 1;
+		new->dim = matrix->dim;
+		new->first = matrix->first;
+		new->next = NULL;
+		matrix->next = new;
+	}
+	new->pos->x = 0;
+	new->pos->y = 0;
+	new->pos->z = 1;
+	matrix = matrix->first;
 }
 
+// ft_getmatrix(matrix, LAST);
 static int	ft_getmatrix(t_matrix* matrix, char name) // IF name = LAST (donc 1) se place sur le dernier maillon
 {
 	if (matrix)
@@ -39,7 +60,6 @@ static void	ft_savepos(t_pos *pos, x_pos, y_pos)
 {
 	pos->x = x_pos;
 	pos->y = y_pos;
-	pos->z = 1;
 }
 
 static void	ft_strtopos(t_matrix *matrix, char *str)
@@ -77,14 +97,9 @@ static void	ft_strtopos(t_matrix *matrix, char *str)
 	matrix = matrix->first;
 }
 
-t_matrix		*ft_matrix_maker(t_matrix* matrix, char *str)
+t_matrix		*ft_matrix_maker(char *str, int dim)
 {
-	t_matrix	*new;
-
-	ft_getmatrix(matrix, LAST);
-	new = (t_matrix*)malloc(sizeof(t_matrix));
-	(!(new) ? (ft_error()) : (new));
-	ft_initmatrix(matrix, new);
+	ft_initmatrix(new, new);
 	ft_strtopos(new->pos, str);
 	matrix = matrix->first;
 	return (new);
