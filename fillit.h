@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 13:35:52 by vpetit            #+#    #+#             */
-/*   Updated: 2017/01/12 20:22:32 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/01/18 16:01:45 by ilarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,14 @@ struct	s_pos
 
 void		ft_error(char	*msg);
 void		ft_getstr(int open_fd, char **line);
+static	int	ft_isvalid_char(char c);
+static	int	ft_isvalid(char *input);
+//static	int	ft_right(char **bloc, int i, int j);
+//static	int	ft_left(char **bloc, int i, int j);
+//static	int	ft_up(char **bloc, int i, int j);
+//static	int	ft_down(char **bloc, int i, int j);
+int			ft_isvalid_shape(char **bloc, int i, int j, int *count);
+static	int	ft_scan_bloc(char **tmp);
+static	int	ft_scan_pieces(char **bloc, int pieces);
 int			ft_reader(char	*input);
-
 #endif

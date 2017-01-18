@@ -6,7 +6,7 @@
 /*   By: ilarbi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 19:01:57 by ilarbi            #+#    #+#             */
-/*   Updated: 2017/01/16 13:08:59 by ilarbi           ###   ########.fr       */
+/*   Updated: 2017/01/18 16:18:35 by ilarbi           ###   ########.fr       */
 /*   Updated: 2017/01/15 22:06:44 by ilarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -22,8 +22,6 @@ static	int	ft_isvalid_char(char c)
 
 static	int	ft_isvalid(char *input)
 {
-	//lit fichier , verifie qu il est conforme
-	//retourne 0 si non, nbre pieces si oui
 	int		i;
 	int		j;
 	int		diese;
@@ -45,7 +43,7 @@ static	int	ft_isvalid(char *input)
 				j++;
 			}
 			if (j != 4 || *input != '\n')
-				ft_error("fichier non valide : colonnes\n");//exits pgm
+				exit(1);//ft_error("fichier non valide : colonnes\n");//exits pgm
 			printf("%c", *input);
 			input++;//passer du \n a la ligne vide
 			j = 0;
@@ -53,7 +51,7 @@ static	int	ft_isvalid(char *input)
 		}
 		printf("sortie de bloc\n");
 		if (diese != 4 || i != 4)
-			//ft_error("fichrer non valide: diese ou lignes\n");
+			exit(1);//ft_error("fichrer non valide: diese ou lignes\n");
 		else
 			printf("bloc valide\n");
 		pieces++;
@@ -61,38 +59,97 @@ static	int	ft_isvalid(char *input)
 		i = 0;
 		if (*input == '\0')
 		   return (pieces);
-		input++;//2e \n ou \0
+		input++;//1er char bloc suiv.
 	}
+	ft_putstr("chaine null ou vide\n");
 	return (0);
-	ft_error("chaine null ou vide\n");//exits pgm
 }
 
-int		ft_isvalid_shape(char *input)
+static	int	ft_scan_bloc(char **tmp)
 {
-	//square
-	/*if (*input == '#')
+	int	i;
+	int	j;
+	int	count;
+	int ret;
+	
+	i = 0;
+	j = 0;
+	count = 0;
+	ret = 0;
+	while (i < 4)
 	{
-		if (*(input + 1) == '#' && *(input + 2) == '#' && *(input + 3) == '#' || (*(input + 5) == '#' && *(input + 10) == '#' && *(input + 15) == '#' || *(input)//bar
-			return (1);
-	}*/
+	   	if (tmp[i][j] == '#')
+		{
+			ret = ft_isvalid_shape(tmp, i, j, &count);
+			printf("isvalidshape = %d\n", ret);
+			//break;
+			return (ret);
+		}
+		j++;
+		if (j == 4)
+		{
+			j = 0;
+			i++;
+		}
+	}
+	return (0);
+}
 
+static	int	ft_scan_pieces(char **bloc, int pieces)
+{
+	int		i;
+	int		j;
+	int		k;
+	int		line;
+	char	**tmp;
+
+	i = 0;
+	j = 0;
+	k = 1;
+	line = 0;
+	tmp = (char **)malloc(sizeof(char *) * 5);
+	tmp[4] = 0;
+	while (i < 4 * k && k <= pieces)
+	{	
+		while (line < 4)
+		{
+			tmp[line] = (char *)malloc(sizeof(char *) * 5); 
+			tmp[line++] = bloc[i++];
+		}	
+		if (!ft_scan_bloc(tmp))
+			exit(1);
+		i = 4 * k;
+		k++;
+		j = 0;
+		line = 0;
+	}
+	return (1);
 }
 
 int		ft_reader(char	*input)
 {
+	int		pieces;
+	char	**bloc;
+
 	if (input)
 	{
-		return (ft_isvalid(input));
+		pieces = ft_isvalid(input);
+		if (pieces == 0)
+			exit(1);
+		else
+			printf("je dispose de %d pieces\n", pieces);
+		bloc = ft_strsplit(input, '\n');
+		return(ft_scan_pieces(bloc, pieces) ? 1 : 0);
 	}
-	return (1);
+	return (0);
 }
 
 int		main(void)
 {
 
-	char *input = "#...\n###.\n....\n....\n\n####\n....\n....\n....\n";
-	printf("Your input is : \n%s\n", input);
-	printf("ft_reader return : \n");
+	char *input = "##..\n##..\n....\n....\n\n####\n....\n....\n....\n\n##..\n#...\n#...\n....\n";
+	/*printf("Your input is : \n%s\n", input);
+	printf("ft_reader return : \n");*/
 	printf("%d\n", ft_reader(input));
 	return (0);
 }
