@@ -59,24 +59,31 @@ t_piece	*ft_new_piece(t_piece tab[26], char const *shape)
 	return (tab);
 }
 //parcours chaine map jusqu a trouver assez de vide pr lacer chaine shape
-char	*ft_place(char *map, t_piece p)
+int		ft_place(char **map, t_piece p)
   {
 	  int	size;
 	  int	i;
-	char	*search;	
+	//char	*search;	
 			
 		i = 0;	
 	  size = ft_strlen(p.tetri);
-	  search = map;
+	  printf("ma map bitch ! %s\n", *map);
+	  printf("premiere lettre : %c\n", *map[0]);
+	  //search = *map;
 	  printf("taille shape : %d\n", size);
-	  while(search[i] && search[i] != '.')
-		  i++;
-	 if (search[i] == '.')
+	  //while(search[i] && search[i] != '.')
+	while (*map[i] && *map[i] != '.')
+  		i++;
+	 if (*map[i] == '.')
 	 {
-		 printf("overlap returns : %p", ft_overlap(&search[i], size));
-		ft_memcpy(&search[i], p.tetri, size);
-		printf("ma nouvelle map : %s\n", map);
-	 }return (map);
+		 ft_putstr("ok\n");
+		// printf("overlap returns : %p", ft_overlap(&search[i], size));
+		 printf("overlap returns : %p\n", *map + i);
+		ft_memcpy(*map + i, p.tetri, size);
+		printf("ma nouvelle map : %s\n", *map);
+	 	return (1);
+	 }
+	 return (0);
   }
 /*
    int  ft_solve(char *map, struct *piece)
@@ -90,14 +97,14 @@ int		main(void)
 	char const	*shape;
 	t_piece 	tab[26];
 	char		*map;
+	
 	i = 0;
 	shape = "####\n....\n....\n....\n";
 	map = (char *)malloc(sizeof(char) * 4);
-	map = "....";
+	ft_strcpy(map, "....");
 	ft_new_piece(tab, shape);
 	printf("shape : %s     name : %c\n", tab[i].tetri, tab[i].name);
-
-	printf("%s\n", ft_place(map, tab[i]));
+	ft_place(&map, tab[i]);
 	return (0);
 }
 
