@@ -1,15 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Reader.c                                           :+:      :+:    :+:   */
+/*   ft_reader.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilarbi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ilarbi <ilarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 19:01:57 by ilarbi            #+#    #+#             */
-/*   Updated: 2017/01/18 19:34:27 by ilarbi           ###   ########.fr       */
-/*   Updated: 2017/01/15 22:06:44 by ilarbi           ###   ########.fr       */
+/*   Updated: 2017/01/26 12:51:34 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -71,7 +71,7 @@ static	int	ft_scan_bloc(char **tmp)
 	int	j;
 	int	count;
 	int ret;
-	
+
 	i = 0;
 	j = 0;
 	count = 0;
@@ -110,12 +110,12 @@ static	int	ft_scan_pieces(char **bloc, int pieces)
 	tmp = (char **)malloc(sizeof(char *) * 5);
 	tmp[4] = 0;
 	while (i < 4 * k && k <= pieces)
-	{	
+	{
 		while (line < 4)
 		{
-			tmp[line] = (char *)malloc(sizeof(char *) * 5); 
+			tmp[line] = (char *)malloc(sizeof(char *) * 5);
 			tmp[line++] = bloc[i++];
-		}	
+		}
 		if (!ft_scan_bloc(tmp))
 			exit(1);
 	//	while (line >= 0 && i >= 4 * (k - 1))
@@ -147,13 +147,13 @@ int		ft_reader(char	*input)
 	}
 	return (0);
 }
-
-int		main(void)
-{
-
-	char *input = "##..\n##..\n....\n....\n\n####\n....\n....\n....\n\n##..\n#...\n#...\n....\n";
-	/*printf("Your input is : \n%s\n", input);
-	printf("ft_reader return : \n");*/
-	printf("reader retourne %d\n", ft_reader(input));
-	return (0);
-}
+//
+// int		main(void)
+// {
+//
+// 	char *input = "##..\n##..\n....\n....\n\n####\n....\n....\n....\n\n##..\n#...\n#...\n....\n";
+// 	/*printf("Your input is : \n%s\n", input);
+// 	printf("ft_reader return : \n");*/
+// 	printf("reader retourne %d\n", ft_reader(input));
+// 	return (0);
+// }

@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 18:25:36 by vpetit            #+#    #+#             */
-/*   Updated: 2017/01/19 20:30:41 by ilarbi           ###   ########.fr       */
+/*   Updated: 2017/01/26 16:37:27 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@
 
 static int	ft_display_file(char *argv)
 {
-	int		open_fd;
-	char	**line;
+	int			open_fd;
+	char		**line;
+	t_matrix	*matrix;
 
 	open_fd = open(argv, O_RDWR);
 	//On ouvre le fichier passe en parametre
@@ -43,9 +44,10 @@ static int	ft_display_file(char *argv)
 		ft_getstr(open_fd, line);
 		printf("your string is : \n");
 		printf("%s", *line);
+		matrix = ft_matrix_maker(*line, ft_reader(*line));
+		ft_transfmatrix(matrix);
+		ft_getbestshape(matrix);
 
-		// Ici on appelle ta fonction avec en parametre notre string (la fonction est ok)
-		ft_reader(*line);
 	}
 	//on ferme le fichier
 	if (close(open_fd) == -1)

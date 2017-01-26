@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isvalid_shape.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilarbi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ilarbi <ilarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 18:40:54 by ilarbi            #+#    #+#             */
-/*   Updated: 2017/01/18 19:27:57 by ilarbi           ###   ########.fr       */
-/*   Updated: 2017/01/15 22:04:41 by ilarbi           ###   ########.fr       */
+/*   Updated: 2017/01/26 14:23:08 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include <stdio.h>
 #include "libft/libft.h"
@@ -49,20 +49,20 @@ int				ft_isvalid_shape(char **bloc, int i, int j, int *count)
 		ft_putstr("right\n");
 		ft_isvalid_shape(bloc, i, (j + 1), count);
 	}
-	
+
 	if (ft_left(bloc,i,j))
 	{
 		ft_putstr("left\n");
 		ft_isvalid_shape(bloc, i, (j - 1), count);
 	}
-	
+
 	if (ft_down(bloc,i,j))
 	{
 		ft_putstr("down\n");
 		ft_isvalid_shape(bloc, (i + 1), j, count);
 	}
-	
-	printf("count = %d\n", *count);
+
+	// printf("count = %d\n", *count);
 	return ((*count == 4) ? 1 : 0);
 }
 /*
@@ -79,7 +79,7 @@ int		main(void)
 	j = 0;
 	k = 1;
 	count = 0;
-	
+
 	char *input = "..##\n.##.\n....\n....\n";
 	//\n..##\n..##\n....\n....\n\n##...\n#...\n.#..\n....\n";
 	bloc = ft_strsplit(input, '\n');
@@ -96,7 +96,7 @@ int		main(void)
 			}
 			j++;
 			if (j == 4)
-			{	
+			{
 				j = 0;
 				i++;
 			}
