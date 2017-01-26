@@ -6,10 +6,9 @@
 /*   By: ilarbi <ilarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 19:01:57 by ilarbi            #+#    #+#             */
-/*   Updated: 2017/01/26 12:51:34 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/01/26 18:31:42 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -65,7 +64,7 @@ static	int	ft_isvalid(char *input)
 	return (0);
 }
 
-static	int	ft_scan_bloc(char **tmp)
+static int	ft_scan_bloc(char **tmp)
 {
 	int	i;
 	int	j;
@@ -78,7 +77,7 @@ static	int	ft_scan_bloc(char **tmp)
 	ret = 0;
 	while (i < 4)
 	{
-	   	if (tmp[i][j] == '#')
+		if (tmp[i][j] == '#')
 		{
 			ret = ft_isvalid_shape(tmp, i, j, &count);
 			printf("isvalidshape = %d\n", ret);
@@ -95,7 +94,7 @@ static	int	ft_scan_bloc(char **tmp)
 	return (0);
 }
 
-static	int	ft_scan_pieces(char **bloc, int pieces)
+static int	ft_scan_pieces(char **bloc, int pieces)
 {
 	int		i;
 	int		j;
@@ -128,7 +127,7 @@ static	int	ft_scan_pieces(char **bloc, int pieces)
 	return (1);
 }
 
-int		ft_reader(char	*input)
+int			ft_reader(char *input)
 {
 	int		pieces;
 	char	**bloc;
@@ -142,7 +141,7 @@ int		ft_reader(char	*input)
 			printf("je dispose de %d pieces\n", pieces);
 		bloc = ft_strsplit(input, '\n');
 		if (!ft_scan_pieces(bloc, pieces))
-				exit(1);
+			exit(1);
 		return (pieces);
 	}
 	return (0);

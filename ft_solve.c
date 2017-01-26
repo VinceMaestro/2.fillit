@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_solve.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilarbi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ilarbi <ilarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 17:01:48 by ilarbi            #+#    #+#             */
-/*   Updated: 2017/01/21 20:49:08 by ilarbi           ###   ########.fr       */
+/*   Updated: 2017/01/26 18:37:21 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,13 @@
 #include <stdlib.h>
 #include "./libft/libft.h"
 
-typedef struct	s_piece
-{
-	char 		*tetri;
-	char 		name;
-}				t_piece;
-
 static	char	*ft_shape(const char *shape, int dim)
 {
 	int		i;
 	char	*dimshape;
 	char	*start;
 	int		line;
-	
+
 	dimshape = (char*)malloc(sizeof(char) * ((dim + 1) * dim));
 	start = dimshape;
 	line = 0;
@@ -37,7 +31,7 @@ static	char	*ft_shape(const char *shape, int dim)
 		{
 			//*dimshape++ = *shape++;
 			ft_memset(dimshape, *shape, 1);
-			printf(" i = %d :  %c\n" ,i,  *dimshape);
+			printf(" i = %d :  %c\n", i, *dimshape);
 			dimshape++;
 			shape++;
 			i++;
@@ -47,7 +41,7 @@ static	char	*ft_shape(const char *shape, int dim)
 		//	*dimshape++ = '.';
 		{
 			ft_memset(dimshape, '.', 1);
-			printf(" i = %d :  %c\n" ,i,  *dimshape);
+			printf(" i = %d :  %c\n", i, *dimshape);
 			dimshape++;
 		//	shape++;
 			i++;
@@ -57,20 +51,20 @@ static	char	*ft_shape(const char *shape, int dim)
 			//*dimshape++ = '\n';
 			ft_memset(dimshape, '\n', 1);
 			line++;
-			printf(" i = %d :  %c\n" ,i,  *dimshape);
+			printf(" i = %d :  %c\n", i, *dimshape);
 			dimshape++;
 			shape++;
 			i = 0;
 		}
-			while (!*shape && line < dim)
-			{
-				ft_memset(dimshape,'.', dim);
-				ft_memset(dimshape + dim , '\n', 1);
-				//printf("ligne ajoutee : %s", dimshape -dim -1);
-				line++;
-				i = line;
-				dimshape = dimshape + dim + 1;
-			}
+		while (!*shape && line < dim)
+		{
+			ft_memset(dimshape, '.', dim);
+			ft_memset(dimshape + dim, '\n', 1);
+			//printf("ligne ajoutee : %s", dimshape -dim -1);
+			line++;
+			i = line;
+			dimshape = dimshape + dim + 1;
+		}
 	}
 	return (start);
 }
@@ -78,10 +72,10 @@ static	char	*ft_shape(const char *shape, int dim)
 static	int		ft_overlap(char *position, int size)
 {
 	int		i;
-	
+
 	i = 1;
 	while (i < size && position[i] && position[i] == '.')
-		   i++;	
+		   i++;
 	return ((i == size) ? 0 : 1);
 }
 
@@ -127,17 +121,17 @@ t_piece	*ft_new_piece(t_piece tab[26], char const *shape)
 		if (tab[count].tetri[index] == '#')
 			tab[count].tetri[index] = tab[count].name;
 		index++;
-	}	
+	}
 	count++;
 	return (tab);
 }
 //parcours chaine map jusqu a trouver assez de vide pr lacer chaine shape
 int		ft_place(char **map, t_piece p)
-  {
+{
 	  int	size;
 	  int	i;
 
-		i = 0;	
+		i = 0;
 	  size = ft_strlen(p.tetri);
 	  printf("ma map bitch ! %s\n", *map);
 	  printf("taille shape : %d\n", size);
@@ -146,14 +140,14 @@ int		ft_place(char **map, t_piece p)
 	 if (*map[i] == '.')
 	 {
 		 if(!ft_overlap(*map + i, size))
-		 {	
+		 {
 			 ft_memcpy(*map + i, p.tetri, size);
 			printf("=========ma nouvelle map : \n%s \n=========", *map);
 	 		return (1);
 		 }
 	 }
 	 return (0);
-  }
+}
 /*
    int  ft_solve(char *map, struct *piece)
    {
@@ -166,7 +160,7 @@ int		main(void)
 	char const	*shape;
 	t_piece 	tab[26];
 	char		*map;
-	
+
 	i = 0;
 	shape = ".##.\n##..\n....\n....\n";
 	map = (char *)malloc(sizeof(char) * 20);
@@ -178,4 +172,3 @@ int		main(void)
 	printf("new format :\n%s", ft_shape(shape, 15));
 	return (0);
 }
-
