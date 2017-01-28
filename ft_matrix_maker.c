@@ -6,31 +6,13 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 18:59:36 by vpetit            #+#    #+#             */
-/*   Updated: 2017/01/26 16:13:32 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/01/28 17:05:03 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdio.h>
 #include <stdlib.h>
-
-static int		ft_getmatrix(t_matrix *matrix, char name)
-{
-	if (matrix)
-	{
-		// printf("matrix name is : %c \n", matrix->name);
-		if (!matrix->next || !matrix->name || matrix->name == name)
-			return (1);
-		while (matrix->next && matrix->name != name)
-		{
-			printf("matrix next AAAAAAAAAAAAAAA\n");
-			matrix = matrix->next;
-		}
-		if (matrix->name == name)
-			return (1);
-	}
-	return (0);
-}
 
 static void		ft_initmatrix(t_matrix *matrix, int dim)
 {
@@ -82,8 +64,6 @@ t_matrix		*ft_matrix_maker(char *str, int dim)
 	matrix->first = matrix;
 	while (str[str_pos + 1])
 	{
-		// matrix = (t_matrix*)malloc(sizeof(t_matrix));
-		// ((!matrix) ? (ft_error("matrix creation failed")) : (matrix));
 		ft_initmatrix(matrix, dim);
 		subunit_nb = 0;
 		x_pos = 0;
@@ -111,7 +91,7 @@ t_matrix		*ft_matrix_maker(char *str, int dim)
 				str_pos++;
 			str_pos++;
 		}
-		matrix = matrix->next;
+		((matrix->next) ? (matrix = matrix->next) : matrix);
 	}
 	printf("ending\n");
 	matrix = matrix->first;

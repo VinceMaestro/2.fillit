@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 13:35:52 by vpetit            #+#    #+#             */
-/*   Updated: 2017/01/26 18:34:46 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/01/28 15:57:18 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ int			ft_isvalid_shape(char **bloc, int i, int j, int *count);
 int			ft_reader(char	*input);
 char		*ft_strtrimpiece(char const *s);
 t_matrix	*ft_matrix_maker(char *str, int dim);
-int			ft_transfmatrix(t_matrix *matrix, char axis, int num);
+int			ft_m_plus(t_matrix *matrix, int num, char axis);
 char		*ft_getbestshape(t_matrix *matrix);
+int			ft_transfallmatrix(t_matrix *matrix);
+void		ft_printmatrix(t_matrix *matrix);
+int			ft_getmatrix(t_matrix *matrix, char name);
 
 #endif
