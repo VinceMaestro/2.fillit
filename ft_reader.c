@@ -1,13 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Reader.c                                           :+:      :+:    :+:   */
+/*   ft_reader.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilarbi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ilarbi <ilarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 19:01:57 by ilarbi            #+#    #+#             */
-/*   Updated: 2017/01/18 19:34:27 by ilarbi           ###   ########.fr       */
-/*   Updated: 2017/01/15 22:06:44 by ilarbi           ###   ########.fr       */
+/*   Updated: 2017/01/26 18:31:42 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,20 +64,20 @@ static	int	ft_isvalid(char *input)
 	return (0);
 }
 
-static	int	ft_scan_bloc(char **tmp)
+static int	ft_scan_bloc(char **tmp)
 {
 	int	i;
 	int	j;
 	int	count;
 	int ret;
-	
+
 	i = 0;
 	j = 0;
 	count = 0;
 	ret = 0;
 	while (i < 4)
 	{
-	   	if (tmp[i][j] == '#')
+		if (tmp[i][j] == '#')
 		{
 			ret = ft_isvalid_shape(tmp, i, j, &count);
 			printf("isvalidshape = %d\n", ret);
@@ -95,7 +94,7 @@ static	int	ft_scan_bloc(char **tmp)
 	return (0);
 }
 
-static	int	ft_scan_pieces(char **bloc, int pieces)
+static int	ft_scan_pieces(char **bloc, int pieces)
 {
 	int		i;
 	int		j;
@@ -110,12 +109,12 @@ static	int	ft_scan_pieces(char **bloc, int pieces)
 	tmp = (char **)malloc(sizeof(char *) * 5);
 	tmp[4] = 0;
 	while (i < 4 * k && k <= pieces)
-	{	
+	{
 		while (line < 4)
 		{
-			tmp[line] = (char *)malloc(sizeof(char *) * 5); 
+			tmp[line] = (char *)malloc(sizeof(char *) * 5);
 			tmp[line++] = bloc[i++];
-		}	
+		}
 		if (!ft_scan_bloc(tmp))
 			exit(1);
 	//	while (line >= 0 && i >= 4 * (k - 1))
@@ -128,7 +127,7 @@ static	int	ft_scan_pieces(char **bloc, int pieces)
 	return (1);
 }
 
-int		ft_reader(char	*input)
+int			ft_reader(char *input)
 {
 	int		pieces;
 	char	**bloc;
@@ -142,18 +141,18 @@ int		ft_reader(char	*input)
 			printf("je dispose de %d pieces\n", pieces);
 		bloc = ft_strsplit(input, '\n');
 		if (!ft_scan_pieces(bloc, pieces))
-				exit(1);
+			exit(1);
 		return (pieces);
 	}
 	return (0);
 }
-
-int		main(void)
-{
-
-	char *input = "##..\n##..\n....\n....\n\n####\n....\n....\n....\n\n##..\n#...\n#...\n....\n";
-	/*printf("Your input is : \n%s\n", input);
-	printf("ft_reader return : \n");*/
-	printf("reader retourne %d\n", ft_reader(input));
-	return (0);
-}
+//
+// int		main(void)
+// {
+//
+// 	char *input = "##..\n##..\n....\n....\n\n####\n....\n....\n....\n\n##..\n#...\n#...\n....\n";
+// 	/*printf("Your input is : \n%s\n", input);
+// 	printf("ft_reader return : \n");*/
+// 	printf("reader retourne %d\n", ft_reader(input));
+// 	return (0);
+// }

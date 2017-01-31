@@ -1,85 +1,81 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matrix_maker.c                                     :+:      :+:    :+:   */
+/*   ft_matrix_maker.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 18:59:36 by vpetit            #+#    #+#             */
-/*   Updated: 2017/01/12 17:45:34 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/01/28 17:05:03 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-static void	ft_initmatrix(t_matrix *matrix, int dim)
+static void		ft_initmatrix(t_matrix *matrix, int dim)
 {
-	t_matrix	*new;
+	int		i;
 
-	new = (t_matrix*)malloc(sizeof(t_matrix));
-	(!(new) ? (ft_error("FAILED : malloc new")) : (new));
-	new->pos = (t_pos*)malloc(sizeof(t_pos) * 4);
-	(!(new->pos) ? (ft_error("FAILED : malloc pos")) : (new));
+	i = 0;
+	printf("initmatrix Start\n");
+	(!(matrix) ? (ft_error("matrix creation failed")) : (matrix));
 	ft_getmatrix(matrix, LAST);
-	new->name = 'A' + (matrix - matrix->first);
-	new->dim = dim;
-	((matrix->first) ? (new->first = matrix->first) :\
-		(new->first = new));
-	new->next = NULL;
-	((matrix != new) ? (matrix->next = new) : (matrix));
-
+	if (matrix->first)
+	{
+		matrix->next = (t_matrix*)malloc(sizeof(t_matrix));
+		(!(matrix->next) ? (ft_error("FAILED : malloc new")) : (matrix));
+		matrix->next->name = matrix->name + 1;
+		matrix->next->first = matrix->first;
+		matrix = matrix->next;
 	}
 	else
+		matrix->first = matrix;
+	(!(ft_isalpha(matrix->name)) ? (matrix->name = 'A') : (matrix->name));
+	(!(matrix->pos) ? (matrix->pos = (t_pos*)malloc(sizeof(t_pos) * 4)) : matrix->pos);
+	(!(matrix->pos) ? (ft_error("FAILED : malloc pos")) : (matrix));
+	matrix->dim = dim;
+	matrix->next = NULL;
+	while (i < 4)
 	{
-		new->name = matrix->name + 1;
-		new->dim = matrix->dim;
-		new->first = matrix->first;
-		new->next = NULL;
-		matrix->next = new;
+		matrix->pos[i].x = 0;
+		matrix->pos[i].y = 0;
+		matrix->pos[i].z = 1;
+		i++;
 	}
-	new->pos->x = 0;
-	new->pos->y = 0;
-	new->pos->z = 1;
-	matrix = matrix->first;
+	printf("initmatrix sucess name : %c\n", matrix->name);
 }
 
-// ft_getmatrix(matrix, LAST);
-static int	ft_getmatrix(t_matrix* matrix, char name) // IF name = LAST (donc 1) se place sur le dernier maillon
+t_matrix		*ft_matrix_maker(char *str, int dim)
 {
-	if (matrix)
-	{
-		while(matrix->next && matrix->name != name)
-			matrix = matrix->next;
-		if (matrix->name == name)
-			return (1);
-	}
-	return (0);
-}
-
-static void	ft_savepos(t_pos *pos, x_pos, y_pos)
-{
-	pos->x = x_pos;
-	pos->y = y_pos;
-}
-
-static void	ft_strtopos(t_matrix *matrix, char *str)
-{
-	int		x_pos;
-	int		y_pos;
-	int		subunit_nb;
-	int		str_pos;
+	int			x_pos;
+	int			y_pos;
+	int			subunit_nb;
+	int			str_pos;
+	t_matrix	*matrix;
 
 	str_pos = 0;
+	printf("starting\n");
+	matrix = (t_matrix*)malloc(sizeof(t_matrix));
+	((!matrix) ? (ft_error("matrix creation failed")) : (matrix));
+	matrix->pos = (t_pos*)malloc(sizeof(t_pos) * 4);
+	(!(matrix->pos) ? (ft_error("FAILED : malloc pos")) : (matrix));
+	matrix->first = matrix;
 	while (str[str_pos + 1])
 	{
+		ft_initmatrix(matrix, dim);
 		subunit_nb = 0;
 		x_pos = 0;
 		y_pos = 0;
-		while (subunit_nb < 3 && str[str_pos])
+		((str_pos != 0) ? (str_pos++) : (str_pos));
+		while (subunit_nb < 4 && str[str_pos])
 		{
 			if (str[str_pos] == '#')
 			{
-				ft_savepos(&(matrix->pos[subunit_nb]), x_pos, y_pos)
+				matrix->pos[subunit_nb].x = x_pos;
+				matrix->pos[subunit_nb].y = y_pos;
+				printf("x = %i , y = %i\n", matrix->pos[subunit_nb].x, matrix->pos[subunit_nb].y);
 				x_pos++;
 				subunit_nb++;
 			}
@@ -89,18 +85,15 @@ static void	ft_strtopos(t_matrix *matrix, char *str)
 				x_pos = 0;
 			}
 			else if (str[str_pos] != '.')
-				ft_error();
+				ft_error("input error");
+			while (subunit_nb == 4 && str[str_pos] && \
+				!(str[str_pos] == '\n' && str[str_pos + 1] == '\n'))
+				str_pos++;
 			str_pos++;
 		}
-		matrix = matrix->next;
+		((matrix->next) ? (matrix = matrix->next) : matrix);
 	}
+	printf("ending\n");
 	matrix = matrix->first;
-}
-
-t_matrix		*ft_matrix_maker(char *str, int dim)
-{
-	ft_initmatrix(new, new);
-	ft_strtopos(new->pos, str);
-	matrix = matrix->first;
-	return (new);
+	return (matrix);
 }
