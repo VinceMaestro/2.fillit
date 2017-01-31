@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 18:59:36 by vpetit            #+#    #+#             */
-/*   Updated: 2017/01/28 17:05:03 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/01/31 19:23:34 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,14 @@ t_matrix		*ft_matrix_maker(char *str, int dim)
 	printf("starting\n");
 	matrix = (t_matrix*)malloc(sizeof(t_matrix));
 	((!matrix) ? (ft_error("matrix creation failed")) : (matrix));
-	matrix->pos = (t_pos*)malloc(sizeof(t_pos) * 4);
-	(!(matrix->pos) ? (ft_error("FAILED : malloc pos")) : (matrix));
-	matrix->first = matrix;
-	while (str[str_pos + 1])
+	// matrix->pos = (t_pos*)malloc(sizeof(t_pos) * 4);
+	// (!(matrix->pos) ? (ft_error("FAILED : malloc pos")) : (matrix));
+	// matrix->first = matrix;
+	while (str[str_pos])
 	{
 		ft_initmatrix(matrix, dim);
+		ft_putstr("New allocated matrix is : \n");
+		ft_printmatrix(matrix);
 		subunit_nb = 0;
 		x_pos = 0;
 		y_pos = 0;
@@ -75,7 +77,6 @@ t_matrix		*ft_matrix_maker(char *str, int dim)
 			{
 				matrix->pos[subunit_nb].x = x_pos;
 				matrix->pos[subunit_nb].y = y_pos;
-				printf("x = %i , y = %i\n", matrix->pos[subunit_nb].x, matrix->pos[subunit_nb].y);
 				x_pos++;
 				subunit_nb++;
 			}
@@ -91,6 +92,7 @@ t_matrix		*ft_matrix_maker(char *str, int dim)
 				str_pos++;
 			str_pos++;
 		}
+		// ft_printmatrix(matrix);
 		((matrix->next) ? (matrix = matrix->next) : matrix);
 	}
 	printf("ending\n");

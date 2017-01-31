@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 15:58:16 by vpetit            #+#    #+#             */
-/*   Updated: 2017/01/28 16:48:36 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/01/31 19:09:35 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int		ft_getmatrix(t_matrix *matrix, char name)
 {
 	if (matrix)
 	{
-		ft_putstr("matrix next AAAAAAAAAAAAAAA 111111\n");
 		if (!matrix->next || !matrix->name || matrix->name == name)
 			return (1);
 		ft_putstr("matrix next AAAAAAAAAAAAAAA 2222222\n");
