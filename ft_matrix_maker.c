@@ -6,45 +6,56 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 18:59:36 by vpetit            #+#    #+#             */
-/*   Updated: 2017/01/31 19:23:34 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/02/01 03:51:38 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 #include <stdlib.h>
 
-static void		ft_initmatrix(t_matrix *matrix, int dim)
+static t_matrix	*ft_init_newmatrix(t_matrix *matrix)
 {
-	int		i;
+	matrix = ft_getmatrix(matrix, LAST);
+	matrix->next = (t_matrix*)malloc(sizeof(t_matrix));
+	(!(matrix->next) ? (ft_error("FAILED : malloc new matrix")) : (matrix));
+	matrix->next->name = matrix->name + 1;
+	matrix->next->first = matrix->first;
+	matrix = matrix->next;
+	matrix->pos = (t_pos*)malloc(sizeof(t_pos) * 4);
+	if (!matrix->pos)
+		ft_error("Failed Malloc Pos new matrix");
+	matrix->next = NULL;
+	return (matrix);
+}
+
+static t_matrix	*ft_init_firstmatrix(t_matrix *matrix)
+{
+	matrix->first = matrix;
+	matrix->name = 'A';
+	matrix->pos = (t_pos*)malloc(sizeof(t_pos) * 4);
+	if (!matrix->pos)
+		ft_error("Failed Malloc Pos first matrix");
+	matrix->next = NULL;
+	return (matrix);
+}
+
+static t_matrix	*ft_initmatrix(t_matrix *matrix, int dim)
+{
+	int			i;
 
 	i = 0;
-	printf("initmatrix Start\n");
-	(!(matrix) ? (ft_error("matrix creation failed")) : (matrix));
-	ft_getmatrix(matrix, LAST);
 	if (matrix->first)
-	{
-		matrix->next = (t_matrix*)malloc(sizeof(t_matrix));
-		(!(matrix->next) ? (ft_error("FAILED : malloc new")) : (matrix));
-		matrix->next->name = matrix->name + 1;
-		matrix->next->first = matrix->first;
-		matrix = matrix->next;
-	}
+		matrix = ft_init_newmatrix(matrix);
 	else
-		matrix->first = matrix;
-	(!(ft_isalpha(matrix->name)) ? (matrix->name = 'A') : (matrix->name));
-	(!(matrix->pos) ? (matrix->pos = (t_pos*)malloc(sizeof(t_pos) * 4)) : matrix->pos);
-	(!(matrix->pos) ? (ft_error("FAILED : malloc pos")) : (matrix));
+		matrix = ft_init_firstmatrix(matrix);
 	matrix->dim = dim;
-	matrix->next = NULL;
 	while (i < 4)
 	{
 		matrix->pos[i].x = 0;
 		matrix->pos[i].y = 0;
-		matrix->pos[i].z = 1;
 		i++;
 	}
-	printf("initmatrix sucess name : %c\n", matrix->name);
+	return (matrix);
 }
 
 t_matrix		*ft_matrix_maker(char *str, int dim)
@@ -56,17 +67,12 @@ t_matrix		*ft_matrix_maker(char *str, int dim)
 	t_matrix	*matrix;
 
 	str_pos = 0;
-	printf("starting\n");
 	matrix = (t_matrix*)malloc(sizeof(t_matrix));
 	((!matrix) ? (ft_error("matrix creation failed")) : (matrix));
-	// matrix->pos = (t_pos*)malloc(sizeof(t_pos) * 4);
-	// (!(matrix->pos) ? (ft_error("FAILED : malloc pos")) : (matrix));
-	// matrix->first = matrix;
+	matrix->first = NULL;
 	while (str[str_pos])
 	{
-		ft_initmatrix(matrix, dim);
-		ft_putstr("New allocated matrix is : \n");
-		ft_printmatrix(matrix);
+		matrix = ft_initmatrix(matrix, dim);
 		subunit_nb = 0;
 		x_pos = 0;
 		y_pos = 0;
@@ -75,27 +81,24 @@ t_matrix		*ft_matrix_maker(char *str, int dim)
 		{
 			if (str[str_pos] == '#')
 			{
-				matrix->pos[subunit_nb].x = x_pos;
-				matrix->pos[subunit_nb].y = y_pos;
-				x_pos++;
+				(matrix)->pos[subunit_nb].x = x_pos;
+				(matrix)->pos[subunit_nb].y = y_pos;
 				subunit_nb++;
 			}
 			else if (str[str_pos] == '\n')
 			{
 				y_pos--;
-				x_pos = 0;
+				x_pos = -1;
 			}
 			else if (str[str_pos] != '.')
 				ft_error("input error");
-			while (subunit_nb == 4 && str[str_pos] && \
+			while (subunit_nb == 4 && str[str_pos + 1] && \
 				!(str[str_pos] == '\n' && str[str_pos + 1] == '\n'))
 				str_pos++;
+			x_pos++;
 			str_pos++;
 		}
-		// ft_printmatrix(matrix);
-		((matrix->next) ? (matrix = matrix->next) : matrix);
 	}
-	printf("ending\n");
-	matrix = matrix->first;
+	matrix = (matrix)->first;
 	return (matrix);
 }

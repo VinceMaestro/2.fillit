@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_transfallmatrix.c                               :+:      :+:    :+:   */
+/*   ft_print_allmatrix.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/28 13:10:26 by vpetit            #+#    #+#             */
-/*   Updated: 2017/02/01 03:39:52 by vpetit           ###   ########.fr       */
+/*   Created: 2017/01/31 19:28:31 by vpetit            #+#    #+#             */
+/*   Updated: 2017/02/01 00:14:43 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_matrix	*ft_transfallmatrix(t_matrix *matrix)
+void	ft_print_allmatrix(t_matrix *matrix)
 {
-	int		end;
-
-	end = 0;
-	while (matrix && end == 0)
+	ft_printmatrix(matrix);
+	while (matrix->next)
 	{
-		while (matrix->pos[1].x != (ft_m_xplus(matrix, -1))->pos[1].x)
-			;
-		while (matrix->pos[1].y != (ft_m_yplus(matrix, 1))->pos[1].y)
-			;
-		if (matrix->next)
-			matrix = matrix->next;
-		else
-			end = 1;
+		matrix = matrix->next;
+		ft_printmatrix(matrix);
 	}
-	matrix = matrix->first;
-	return (matrix);
 }

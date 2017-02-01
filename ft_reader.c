@@ -6,7 +6,7 @@
 /*   By: ilarbi <ilarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 19:01:57 by ilarbi            #+#    #+#             */
-/*   Updated: 2017/01/26 18:31:42 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/01/31 20:24:52 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ static	int	ft_isvalid(char *input)
 			{
 				((*input == '#') ? diese++ : diese);
 				//((*input == '#') ? diese++ : (*input = '0'));
-				printf(" %c ", *input);
+				// printf(" %c ", *input);
 				input++;
 				j++;
 			}
 			if (j != 4 || *input != '\n')
 				exit(1);//ft_error("fichier non valide : colonnes\n");exit
-			printf("%c", *input);
+			// printf("%c", *input);
 			input++;//passer du \n a la ligne vide
 			j = 0;
 			i++;
@@ -52,7 +52,7 @@ static	int	ft_isvalid(char *input)
 		if (diese != 4 || i != 4)
 			exit(1);//ft_error("fichrer non valide: diese ou lignes\n");
 		else
-			printf("bloc valide\n");
+			// printf("bloc valide\n");
 		pieces++;
 		diese = 0;
 		i = 0;
@@ -80,7 +80,7 @@ static int	ft_scan_bloc(char **tmp)
 		if (tmp[i][j] == '#')
 		{
 			ret = ft_isvalid_shape(tmp, i, j, &count);
-			printf("isvalidshape = %d\n", ret);
+			// printf("isvalidshape = %d\n", ret);
 			//break;
 			return (ret);
 		}
@@ -138,7 +138,7 @@ int			ft_reader(char *input)
 		if (pieces == 0)
 			exit(1);
 		else
-			printf("je dispose de %d pieces\n", pieces);
+			// printf("je dispose de %d pieces\n", pieces);
 		bloc = ft_strsplit(input, '\n');
 		if (!ft_scan_pieces(bloc, pieces))
 			exit(1);
@@ -146,13 +146,3 @@ int			ft_reader(char *input)
 	}
 	return (0);
 }
-//
-// int		main(void)
-// {
-//
-// 	char *input = "##..\n##..\n....\n....\n\n####\n....\n....\n....\n\n##..\n#...\n#...\n....\n";
-// 	/*printf("Your input is : \n%s\n", input);
-// 	printf("ft_reader return : \n");*/
-// 	printf("reader retourne %d\n", ft_reader(input));
-// 	return (0);
-// }

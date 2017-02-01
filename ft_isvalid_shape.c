@@ -6,7 +6,7 @@
 /*   By: ilarbi <ilarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 18:40:54 by ilarbi            #+#    #+#             */
-/*   Updated: 2017/01/31 18:30:28 by ilarbi           ###   ########.fr       */
+/*   Updated: 2017/01/31 20:23:27 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,22 @@ int				ft_isvalid_shape(char **bloc, int i, int j, int *count)
 	bloc[i][j] = '1';
 	if (ft_up(bloc, i, j))
 	{
-		ft_putstr("up\n");
+		// ft_putstr("up\n");
 		ft_isvalid_shape(bloc, (i - 1), j, count);
 	}
 	if (ft_right(bloc, i, j))
 	{
-		ft_putstr("right\n");
+		// ft_putstr("right\n");
 		ft_isvalid_shape(bloc, i, (j + 1), count);
 	}
 	if (ft_left(bloc, i, j))
 	{
-		ft_putstr("left\n");
+		// ft_putstr("left\n");
 		ft_isvalid_shape(bloc, i, (j - 1), count);
 	}
 	if (ft_down(bloc, i, j))
 	{
-		ft_putstr("down\n");
+		// ft_putstr("down\n");
 		ft_isvalid_shape(bloc, (i + 1), j, count);
 	}
 	// printf("count = %d\n", *count);

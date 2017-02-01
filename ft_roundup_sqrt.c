@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_transfallmatrix.c                               :+:      :+:    :+:   */
+/*   ft_roundup_sqrt.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/28 13:10:26 by vpetit            #+#    #+#             */
-/*   Updated: 2017/02/01 03:39:52 by vpetit           ###   ########.fr       */
+/*   Created: 2017/02/01 04:00:50 by vpetit            #+#    #+#             */
+/*   Updated: 2017/02/01 04:04:54 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_matrix	*ft_transfallmatrix(t_matrix *matrix)
+int		ft_roundup_sqrt(int nb)
 {
-	int		end;
+	int		a;
 
-	end = 0;
-	while (matrix && end == 0)
-	{
-		while (matrix->pos[1].x != (ft_m_xplus(matrix, -1))->pos[1].x)
-			;
-		while (matrix->pos[1].y != (ft_m_yplus(matrix, 1))->pos[1].y)
-			;
-		if (matrix->next)
-			matrix = matrix->next;
-		else
-			end = 1;
-	}
-	matrix = matrix->first;
-	return (matrix);
+	a = 0;
+	if (!nb || nb < 0 || nb > 2147395600)
+		return (0);
+	while (a * a < nb)
+		a += 1;
+	return (a);
 }

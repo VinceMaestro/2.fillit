@@ -8,16 +8,20 @@ SRCFILLIT = main_fillit.c \
 		ft_reader.c \
 		ft_matrix_maker.c \
 		ft_transfallmatrix.c \
-		ft_m_plus.c \
+		ft_m_xplus.c \
+		ft_m_yplus.c \
 		ft_isvalid_shape.c \
 		ft_printmatrix.c \
-		ft_getmatrix.c
+		ft_getmatrix.c \
+		ft_print_allmatrix.c \
+		ft_roundup_sqrt.c
 
 SRCLIB = ft_bzero.c \
 		ft_memcpy.c \
 		ft_putstr_fd.c \
 		ft_putnbr.c \
 		ft_putstr.c \
+		ft_putchar.c \
 		ft_strsplit.c \
 		ft_strsub.c \
 		ft_memalloc.c \
