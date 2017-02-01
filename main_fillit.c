@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 18:25:36 by vpetit            #+#    #+#             */
-/*   Updated: 2017/02/01 04:11:33 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/02/01 06:33:11 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,13 @@ int			main(int argc, char **argv)
 	{
 		line = ft_display_file(argv[1]);
 		dim = ft_roundup_sqrt(4 * ft_reader(line));
-		ft_putnbr(dim);
 		matrix = ft_matrix_maker(line, dim);
+		// ft_print_allmatrix(matrix);
 		matrix = ft_transfallmatrix(matrix);
+		// ft_print_allmatrix(matrix);
 
-		ft_getbestshape(matrix);
-		ft_putstr(":INFO: MAIN: Fillit program End\n");
+		// ft_getbestshape(matrix); --> non fonctionnel pour l'instant ;)
+		ft_putstr(":INFO: MAIN: Fillit program Success\n");
 	}
 	else
 		ft_error("MAIN: Too many arguments.\n");
