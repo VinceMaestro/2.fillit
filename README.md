@@ -1,22 +1,60 @@
 # fillit
 42 project fillit
 
-Pour avoir la string, voir main fillit ligne 43 -> 48
+:INFO: Algo (ft_getbestshape) en cours de debug
 
 
-Compiler : (la partie enregistrement de la str est fonctionel)
+Rappel Git :
+	Tu viens de modifier le fichier : "file.c"
 
-Pour toi:
-compile main_fillit.c ft_getstr.c ./libft/ft_bzero.c ./libft/ft_memcpy.c libft/ft_putstr_fd.c libft/ft_putnbr.c ft_error.c ft_reader.c -I libft/libft.h fillit.h
+	Avant de push :
+	- git status
+		- Si c'est marque : " On branch master
+							  Your branch is up-to-date with 'origin/master'.
+							  Changes not staged for commit:
+  								(use "git add <file>..." to update what will be committed)
+  								(use "git checkout -- <file>..." to discard changes in working directory)
 
-Pour moi:
-gcc main_fillit.c ft_getstr.c ft_error.c ft_reader.c ft_isvalid_shape.c ft_matrix_maker.c ft_transfallmatrix.c ft_m_plus.c ./libft/ft_bzero.c ./libft/ft_memcpy.c ./libft/ft_putstr_fd.c ./libft/ft_putnbr.c ./libft/ft_putstr.c ./libft/ft_strsplit.c ./libft/ft_strsub.c ./libft/ft_memalloc.c ./libft/ft_memset.c ./libft/ft_isalpha.c ./libft/ft_tolower.c ./libft/ft_toupper.c -I ./libft/libft.h ./fillit.h
+								modified:		file.c "
 
-lancer:
-./a.out test.txt
+			-> Alors tu peux :
+				- git add .
+				- git commit -m "Your message"
+				- git push origin master
 
-MAKEFILE fonctionel:
-	Pour le moment le programme bug encore: Creation d'une matrice vide en trop qui fait planter
+
+		- Si c'est marque : " On branch master
+							  Your branch is behind master by x commit
+							  You have unmerged paths.
+								(fix conflicts an run "git commit")
+
+							  Unmerged paths:
+								(use "git add <file.c>" to mark resolution)
+
+									both modified :		file.c "
+
+			-> Ca veut dire que tu as modifié une ancienne version du fichier file.c
+				(Meme si tu avais pull avant de commencer a modifier le fichier, c'est
+				possible que le temps que tu le modifie, j'en ai push une autre version,
+				auquel cas il considere que tu est en retard par rapport a la branche master)
+
+			-> La le plus facile c'est:
+			 	- deplacer ton (ou tes) fichier(s) listés dans le git status, en dehors du depot git
+			 	- git pull
+			 	- /!\ /!\ Les fichier que tu as pull sont different des tiens = quelqu'un a travaillé dessus /!\ /!\
+			 	- Tu dois ouvrir les 2 versions de chaque fichier modifié (ta version et celle de git),
+					et faire une fusion des 2 versions toi meme:
+					 	- integrer tes changement au code du depot git
+						 	OU
+						- integrer les changement du depot git dans ton code && replacer ton fichier dans le depot git
+				- Quand les changement pour chaque fichier ont integres:
+
+					-> Alors tu peux :
+						- git add .
+						- git commit -m "Your message"
+						- git push origin master
+
+	CONGRATS : TU MAITRISES LES BASES DE GIT !!
 
 MAKEFILE:
 	all:
@@ -27,4 +65,9 @@ MAKEFILE:
 
 	re
 
+lancer:
 ./fillit test.txt
+
+	ou
+
+./fillit test2.txt
