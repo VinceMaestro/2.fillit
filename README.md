@@ -67,8 +67,7 @@ MAKEFILE:
 	re
 
 lancer:
+
 ./fillit test.txt
-
 	ou
-
 ./fillit test2.txt
