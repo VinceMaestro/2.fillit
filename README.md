@@ -64,10 +64,10 @@ MAKEFILE:
 
 	fclean:
 
-	re
+	re:
 
 lancer:
 
-./fillit test.txt
-	ou
-./fillit test2.txt
+	./fillit test.txt
+		ou
+	./fillit test2.txt
