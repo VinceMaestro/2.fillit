@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_transfallmatrix.c                               :+:      :+:    :+:   */
+/*   ft_transfmatrix.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/28 13:10:26 by vpetit            #+#    #+#             */
-/*   Updated: 2017/02/08 19:18:31 by vpetit           ###   ########.fr       */
+/*   Created: 2017/02/08 19:18:20 by vpetit            #+#    #+#             */
+/*   Updated: 2017/02/08 19:18:21 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_matrix	*ft_transfallmatrix(t_matrix *matrix)
+t_matrix	*ft_transfmatrix(t_matrix *matrix)
 {
-	int		end;
-
-	end = 0;
-	while (matrix && end == 0)
-	{
-		matrix = ft_transfmatrix(matrix);
-		if (matrix->next)
-			matrix = matrix->next;
-		else
-			end = 1;
-	}
-	matrix = matrix->first;
+	while (matrix->pos[1].x != (ft_m_xplus(matrix, -1))->pos[1].x)
+		;
+	while (matrix->pos[1].y != (ft_m_yplus(matrix, 1))->pos[1].y)
+		;
 	return (matrix);
 }

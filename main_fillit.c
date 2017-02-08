@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 18:25:36 by vpetit            #+#    #+#             */
-/*   Updated: 2017/02/01 06:33:11 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/02/08 19:20:30 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int			main(int argc, char **argv)
 		matrix = ft_transfallmatrix(matrix);
 		// ft_print_allmatrix(matrix);
 
-		// ft_getbestshape(matrix); --> non fonctionnel pour l'instant ;)
+		matrix = ft_getbestshape(matrix); // --> non fonctionnel pour l'instant ;)
 		ft_putstr(":INFO: MAIN: Fillit program Success\n");
 	}
 	else

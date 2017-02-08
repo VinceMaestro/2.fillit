@@ -14,7 +14,11 @@ SRCFILLIT = main_fillit.c \
 		ft_printmatrix.c \
 		ft_getmatrix.c \
 		ft_print_allmatrix.c \
-		ft_roundup_sqrt.c
+		ft_roundup_sqrt.c \
+		ft_transfmatrix.c \
+		ft_getbestshape.c \
+		ft_mapalloc.c \
+		ft_m_prev.c
 
 SRCLIB = ft_bzero.c \
 		ft_memcpy.c \

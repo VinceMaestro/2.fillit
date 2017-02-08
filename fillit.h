@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 13:35:52 by vpetit            #+#    #+#             */
-/*   Updated: 2017/02/01 04:42:36 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/02/08 20:06:14 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ struct	s_pos
 
 struct	s_map
 {
-	int		*map;
+	int		**x;
 };
 
 void		ft_error(char *msg);
@@ -48,11 +48,14 @@ int			ft_reader(char *input);
 t_matrix	*ft_matrix_maker(char *str, int dim);
 t_matrix	*ft_m_xplus(t_matrix *matrix, int num);
 t_matrix	*ft_m_yplus(t_matrix *matrix, int num);
-char		*ft_getbestshape(t_matrix *matrix);
+t_matrix	*ft_getbestshape(t_matrix *matrix);
 t_matrix	*ft_transfallmatrix(t_matrix *matrix);
+t_matrix	*ft_transfmatrix(t_matrix *matrix);
 void		ft_printmatrix(t_matrix *matrix);
 t_matrix	*ft_getmatrix(t_matrix *matrix, char name);
 void		ft_print_allmatrix(t_matrix *matrix);
 int			ft_roundup_sqrt(int nb);
+t_map		*ft_mapalloc(t_map *map, int dim);
+t_matrix	*ft_m_prev(t_matrix *matrix);
 
 #endif
