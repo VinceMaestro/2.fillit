@@ -18,7 +18,8 @@ SRCFILLIT = main_fillit.c \
 		ft_transfmatrix.c \
 		ft_getbestshape.c \
 		ft_mapalloc.c \
-		ft_m_prev.c
+		ft_m_prev.c \
+		ft_printmap.c
 
 SRCLIB = ft_bzero.c \
 		ft_memcpy.c \

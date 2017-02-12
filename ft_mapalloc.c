@@ -25,9 +25,9 @@ static t_map	*ft_mapinit(t_map *map, int dim)
 		while (y_pos < dim)
 		{
 			map->x[x_pos][y_pos] = 0;
-			ft_putstr(":INFO: FT_MAPINIT: ");
-			ft_putnbr(map->x[x_pos][y_pos]);
-			ft_putstr(" \n");
+			// ft_putstr(":INFO: FT_MAPINIT: ");
+			// ft_putnbr(map->x[x_pos][y_pos]);
+			// ft_putstr(" \n");
 			y_pos++;
 		}
 		x_pos++;

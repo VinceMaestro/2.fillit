@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 04:15:14 by vpetit            #+#    #+#             */
-/*   Updated: 2017/02/08 20:43:28 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/02/12 19:34:50 by Mads             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,17 +78,17 @@ static t_matrix	*ft_iter(t_matrix *matrix, t_map *map)
 	int		pop;
 
 	pop = 0;
-	ft_putstr(":INFO: Ft_iter\n");
+	ft_putstr(":INFO: FT_GETBESTSHAPE: FT_GETBESTSHAPE: Ft_iter\n");
 	while (matrix)
 	{
-		ft_putstr(":INFO: Ft_iter : matrix\n");
+		ft_putstr(":INFO: FT_GETBESTSHAPE: Ft_iter : matrix\n");
 		while (!ft_m_append(map, matrix) || pop == 1)
 		{
-			ft_putstr(":INFO: Ft_iter: !ft_m_append\n");
+			ft_putstr(":INFO: FT_GETBESTSHAPE: Ft_iter: !ft_m_append\n");
 			pop = 0;
 			if (matrix->pos[0].x == ft_m_xplus(matrix, 1)->pos[0].x)
 			{
-				ft_putstr(":INFO: Ft_iter: x_max\n");
+				ft_putstr(":INFO: FT_GETBESTSHAPE: Ft_iter: x_max\n");
 				if (matrix->pos[0].y == ft_m_yplus(matrix, -1)->pos[0].y)
 				{
 					matrix = ft_transfmatrix(matrix);
@@ -102,16 +102,16 @@ static t_matrix	*ft_iter(t_matrix *matrix, t_map *map)
 					ft_m_xplus(matrix, -matrix->dim);
 			}
 			else
-				ft_putstr(":INFO: Ft_iter: decale x\n");
+				ft_putstr(":INFO: FT_GETBESTSHAPE: Ft_iter: decale x\n");
 		}
-		ft_putstr(":INFO: Ft_iter: m_append\n");
+		ft_putstr(":INFO: FT_GETBESTSHAPE: Ft_iter: m_append\n");
 		map = ft_m_append(map, matrix);
-		ft_putstr(":INFO: Ft_iter: m_append Success\n");
-		ft_putstr(":INFO: Ft_iter: matrix->next\n");
+		ft_putstr(":INFO: FT_GETBESTSHAPE: Ft_iter: m_append Success\n");
+		ft_putstr(":INFO: FT_GETBESTSHAPE: Ft_iter: matrix->next\n");
 		if (!(matrix->next))
 			return (matrix = matrix->first);
 		matrix = matrix->next;
-		ft_putstr(":INFO: Ft_iter: matrix->next Success\n");
+		ft_putstr(":INFO: FT_GETBESTSHAPE: Ft_iter: matrix->next Success\n");
 	}
 	ft_error("FT_ITER: Comes to an unexpected end");
 	return (NULL);
@@ -119,21 +119,22 @@ static t_matrix	*ft_iter(t_matrix *matrix, t_map *map)
 
 t_matrix	*ft_getbestshape(t_matrix *matrix)
 {
-	t_map		*map;
+	t_map		map;
 	t_matrix	*tmp;
 
-	map = (t_map*)malloc(sizeof(t_map));
+	// map = (t_map)malloc(sizeof(t_map));
 	if (!matrix)
 		ft_error("FT_GETBESTSHAPE: Missing matrix");
-	if (!map)
-		ft_error("FT_GETBESTSHAPE: Malloc Failed");
-	map = ft_mapalloc(map, matrix->dim);
+	// if (!map)
+	// 	ft_error("FT_GETBESTSHAPE: Malloc Failed");
+	ft_mapalloc(&map, matrix->dim);
 	ft_putstr(":INFO: Alloc ok\n");
-	while (!(tmp = ft_iter(matrix, map)))
+	ft_printmap(map, matrix->dim);
+	while (!(tmp = ft_iter(matrix, &map)))
 	{
 		matrix = ft_m_increasedim(matrix);
 		matrix = ft_transfallmatrix(matrix);
-		map = ft_mapalloc(map, matrix->dim);
+		ft_mapalloc(&map, matrix->dim);
 	}
 	matrix = tmp;
 	return (matrix);
