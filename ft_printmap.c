@@ -1,24 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printmap.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/02/15 16:53:33 by vpetit            #+#    #+#             */
+/*   Updated: 2017/02/15 18:01:36 by vpetit           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "fillit.h"
 
 void	ft_printmap(t_map map, int dim)
 {
-    int     x_;
-    int     y_;
+	int		x_;
+	int		y_;
 
-    x_ = 0;
-    ft_putstr("\tmap :\n");
-    while (x_ < dim)
-    {
-        y_ = 0;
-        ft_putstr("\t\t( ");
-        while (y_ < dim)
-        {
-            ft_putnbr(map.x[x_][y_]);
-            ft_putchar(' ');
-            y_++;
-        }
-        ft_putstr(")\n");
-        x_++;
-    }
+	y_ = 0;
+	ft_putstr("\tmap :\n");
+	while (y_ < dim)
+	{
+		x_ = 0;
+		ft_putstr("\t\t( ");
+		while (x_ < dim)
+		{
+			ft_putnbr(map.axis[x_][y_]);
+			ft_putchar(' ');
+			x_++;
+		}
+		ft_putstr(")\n");
+		y_++;
+	}
 }

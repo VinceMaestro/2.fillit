@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 13:10:26 by vpetit            #+#    #+#             */
-/*   Updated: 2017/02/08 19:18:31 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/02/16 05:38:34 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,15 @@
 
 t_matrix	*ft_transfallmatrix(t_matrix *matrix)
 {
-	int		end;
-
-	end = 0;
-	while (matrix && end == 0)
+	if (matrix)
 	{
 		matrix = ft_transfmatrix(matrix);
-		if (matrix->next)
+		while (matrix->next)
+		{
 			matrix = matrix->next;
-		else
-			end = 1;
+			matrix = ft_transfmatrix(matrix);
+		}
+		matrix = matrix->first;
 	}
-	matrix = matrix->first;
 	return (matrix);
 }

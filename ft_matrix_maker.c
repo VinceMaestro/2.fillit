@@ -6,59 +6,80 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 18:59:36 by vpetit            #+#    #+#             */
-/*   Updated: 2017/02/01 03:51:38 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/02/16 01:52:02 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdlib.h>
 
-static t_matrix	*ft_init_newmatrix(t_matrix *matrix)
-{
-	matrix = ft_getmatrix(matrix, LAST);
-	matrix->next = (t_matrix*)malloc(sizeof(t_matrix));
-	(!(matrix->next) ? (ft_error("FAILED : malloc new matrix")) : (matrix));
-	matrix->next->name = matrix->name + 1;
-	matrix->next->first = matrix->first;
-	matrix = matrix->next;
-	matrix->pos = (t_pos*)malloc(sizeof(t_pos) * 4);
-	if (!matrix->pos)
-		ft_error("Failed Malloc Pos new matrix");
-	matrix->next = NULL;
-	return (matrix);
-}
+// static t_matrix	*ft_init_newmatrix(t_matrix *matrix, int dim)
+// {
+// 	matrix = ft_getmatrix(matrix, LAST);
+// 	matrix->next = (t_matrix*)malloc(sizeof(t_matrix));
+// 	(!(matrix->next) ? (ft_error("FAILED : malloc new matrix")) : (matrix));
+// 	matrix->next->name = matrix->name + 1;
+// 	matrix->next->dim = dim;
+// 	matrix->next->pos = (t_pos*)malloc(sizeof(t_pos) * 4);
+// 	if (!matrix->pos)
+// 		ft_error("Failed Malloc Pos new");
+// 	matrix->next->first = matrix->first;
+// 	matrix = matrix->next;
+// 	matrix->next = NULL;
+// 	return (matrix);
+// }
+//
+// static t_matrix	*ft_init_firstmatrix(t_matrix *matrix, int dim)
+// {
+// 	matrix->name = 'A';
+// 	matrix->dim = dim;
+// 	matrix->pos = (t_pos*)malloc(sizeof(t_pos) * 4);
+// 	if (!matrix->pos)
+// 		ft_error("Failed Malloc Pos first matrix");
+// 	matrix->first = matrix;
+// 	matrix->next = NULL;
+// 	return (matrix);
+// }
 
-static t_matrix	*ft_init_firstmatrix(t_matrix *matrix)
-{
-	matrix->first = matrix;
-	matrix->name = 'A';
-	matrix->pos = (t_pos*)malloc(sizeof(t_pos) * 4);
-	if (!matrix->pos)
-		ft_error("Failed Malloc Pos first matrix");
-	matrix->next = NULL;
-	return (matrix);
-}
-
-static t_matrix	*ft_initmatrix(t_matrix *matrix, int dim)
+static t_matrix	*ft_initmatrix(t_matrix *matrix, int piece_nb)
 {
 	int			i;
+	int			dim;
+	int			subunit;
+	t_matrix	*first;
 
 	i = 0;
-	if (matrix->first)
-		matrix = ft_init_newmatrix(matrix);
-	else
-		matrix = ft_init_firstmatrix(matrix);
-	matrix->dim = dim;
-	while (i < 4)
+	first = matrix;
+	dim = ft_roundup_sqrt(4 * piece_nb);
+	matrix->name = '@';
+	while (i < piece_nb)
 	{
-		matrix->pos[i].x = 0;
-		matrix->pos[i].y = 0;
+		subunit = 0;
+		if (matrix->name != '@')
+		{
+			matrix->next = (t_matrix*)malloc(sizeof(t_matrix));
+			matrix = matrix->next;
+			((!matrix) ? (ft_error("ft_initmatrix: Alloc failed")) : (matrix));
+		}
+		matrix->name = 'A' + i;
+		matrix->dim = dim;
+		matrix->pos = (t_pos*)malloc(sizeof(t_pos) * 4);
+		((!matrix->pos) ? (ft_error("ft_initmatrix: Alloc failed")) : (matrix));
+		while (subunit < 4)
+		{
+			matrix->pos[subunit].x = 0;
+			matrix->pos[subunit].y = 0;
+			subunit++;
+		}
+		matrix->first = first;
+		matrix->next = NULL;
 		i++;
 	}
+	matrix = matrix->first;
 	return (matrix);
 }
 
-t_matrix		*ft_matrix_maker(char *str, int dim)
+t_matrix		*ft_matrix_maker(char *str, int piece_nb)
 {
 	int			x_pos;
 	int			y_pos;
@@ -69,10 +90,9 @@ t_matrix		*ft_matrix_maker(char *str, int dim)
 	str_pos = 0;
 	matrix = (t_matrix*)malloc(sizeof(t_matrix));
 	((!matrix) ? (ft_error("matrix creation failed")) : (matrix));
-	matrix->first = NULL;
+	matrix = ft_initmatrix(matrix, piece_nb);
 	while (str[str_pos])
 	{
-		matrix = ft_initmatrix(matrix, dim);
 		subunit_nb = 0;
 		x_pos = 0;
 		y_pos = 0;
@@ -81,8 +101,8 @@ t_matrix		*ft_matrix_maker(char *str, int dim)
 		{
 			if (str[str_pos] == '#')
 			{
-				(matrix)->pos[subunit_nb].x = x_pos;
-				(matrix)->pos[subunit_nb].y = y_pos;
+				matrix->pos[subunit_nb].x = x_pos;
+				matrix->pos[subunit_nb].y = y_pos;
 				subunit_nb++;
 			}
 			else if (str[str_pos] == '\n')
@@ -98,7 +118,10 @@ t_matrix		*ft_matrix_maker(char *str, int dim)
 			x_pos++;
 			str_pos++;
 		}
+		(((!str[str_pos] && matrix->next) || (str[str_pos] && !matrix->next)) ? \
+			(ft_error("try to read to long buffer")) : (matrix));
+		((matrix->next) ? (matrix = matrix->next) : (matrix));
 	}
-	matrix = (matrix)->first;
+	matrix = matrix->first;
 	return (matrix);
 }

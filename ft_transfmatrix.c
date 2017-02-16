@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 19:18:20 by vpetit            #+#    #+#             */
-/*   Updated: 2017/02/08 19:18:21 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/02/16 05:35:20 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 t_matrix	*ft_transfmatrix(t_matrix *matrix)
 {
-	while (matrix->pos[1].x != (ft_m_xplus(matrix, -1))->pos[1].x)
-		;
-	while (matrix->pos[1].y != (ft_m_yplus(matrix, 1))->pos[1].y)
-		;
+	matrix = ft_m_xplus(matrix, -matrix->dim);
+	matrix = ft_m_yplus(matrix, matrix->dim);
 	return (matrix);
 }

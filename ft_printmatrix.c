@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 14:52:01 by vpetit            #+#    #+#             */
-/*   Updated: 2017/01/31 23:54:21 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/02/15 22:31:24 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ void	ft_printmatrix(t_matrix *matrix)
 	subunit_nb = 0;
 	ft_putstr("\tmatrix: ");
 	ft_putchar(matrix->name);
-	ft_putstr(" :\n");
+	ft_putstr(" :\tdim: ");
+	ft_putnbr(matrix->dim);
+	ft_putchar('\n');
 	while (subunit_nb < 4)
 	{
 		ft_putstr("\t\t(x = ");

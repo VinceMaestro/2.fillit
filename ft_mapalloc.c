@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 19:30:33 by vpetit            #+#    #+#             */
-/*   Updated: 2017/02/08 20:50:21 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/02/15 22:18:18 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,16 @@ static t_map	*ft_mapinit(t_map *map, int dim)
 	int		x_pos;
 	int		y_pos;
 
-	x_pos = 0;
-	while (x_pos < dim)
+	y_pos = 0;
+	while (y_pos < dim)
 	{
-		y_pos = 0;
-		while (y_pos < dim)
+		x_pos = 0;
+		while (x_pos < dim)
 		{
-			map->x[x_pos][y_pos] = 0;
-			// ft_putstr(":INFO: FT_MAPINIT: ");
-			// ft_putnbr(map->x[x_pos][y_pos]);
-			// ft_putstr(" \n");
-			y_pos++;
+			map->axis[x_pos][y_pos] = 0;
+			x_pos++;
 		}
-		x_pos++;
+		y_pos++;
 	}
 	return (map);
 }
@@ -40,13 +37,13 @@ t_map			*ft_mapalloc(t_map *map, int dim)
 	int		cpt;
 
 	cpt = 0;
-	map->x = (int**)malloc(sizeof(int*) * dim);
-	if (!map->x)
+	map->axis = (int**)malloc(sizeof(int*) * dim);
+	if (!map->axis)
 		ft_error("FT_GETBESTSHAPE: Malloc failed");
 	while (cpt < dim)
 	{
-		map->x[cpt] = (int*)malloc(sizeof(int) * dim);
-		if (!map->x[cpt])
+		map->axis[cpt] = (int*)malloc(sizeof(int) * dim);
+		if (!map->axis[cpt])
 			ft_error("FT_GETBESTSHAPE: Malloc failed");
 		cpt++;
 	}
