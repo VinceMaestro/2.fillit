@@ -33,7 +33,8 @@ SRCLIB = ft_bzero.c \
 		ft_memset.c \
 		ft_isalpha.c \
 		ft_tolower.c \
-		ft_toupper.c
+		ft_toupper.c \
+		ft_strdel.c
 
 LIBDIR = ./libft
 
@@ -49,7 +50,7 @@ INCL = ./libft/libft.h \
 all: $(NAME)
 
 $(NAME) : $(SRC)
-			gcc $(CFLAGS) -c $(SRC) -I $(INCL)
+			gcc $(CFLAGS) -c $(SRC) -g -I $(INCL)
 			gcc $(CFLAGS) $(OBJ) -o $(NAME)
 
 clean:
