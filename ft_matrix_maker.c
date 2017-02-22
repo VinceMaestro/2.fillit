@@ -6,12 +6,35 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 18:59:36 by vpetit            #+#    #+#             */
-/*   Updated: 2017/02/16 01:52:02 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/02/22 17:13:38 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdlib.h>
+
+static t_matrix	*ft_checkshape(t_matrix *matrix)
+{
+	int		dim;
+	int		subunit;
+
+	dim = matrix->dim;
+	subunit = 0;
+	while (subunit < 4)
+	{
+		if (matrix->pos[subunit].x >= dim || matrix->pos[subunit].y >= dim)
+		{
+			matrix = matrix->first;
+			matrix = ft_m_increasedim(matrix);
+			return (ft_checkshape(matrix));
+		}
+		subunit++;
+	}
+	if (matrix->next)
+		return (ft_checkshape(matrix->next));
+	else
+		return (matrix = matrix->first);
+}
 
 static t_matrix	*ft_initmatrix(t_matrix *matrix, int piece_nb)
 {
@@ -90,10 +113,12 @@ t_matrix		*ft_matrix_maker(char *str, int piece_nb)
 			x_pos++;
 			str_pos++;
 		}
-		(((!str[str_pos] && matrix->next) || (str[str_pos] && !matrix->next)) ? \
+		(((!str[str_pos] && matrix->next) || (str[str_pos] && !matrix->next)) ?\
 			(ft_error("try to read to long buffer")) : (matrix));
 		((matrix->next) ? (matrix = matrix->next) : (matrix));
 	}
 	matrix = matrix->first;
+	if (piece_nb < 3)
+		matrix = ft_checkshape(matrix);
 	return (matrix);
 }

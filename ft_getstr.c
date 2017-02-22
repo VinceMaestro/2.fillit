@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 18:09:41 by vpetit            #+#    #+#             */
-/*   Updated: 2017/02/20 21:40:22 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/02/22 16:54:33 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void		ft_getstr(int open_fd, char **line)
 		else
 			reader = read(open_fd, &str[full_len - len], len);
 	}
-	str = ft_memincr(str, full_len - len + reader);
 	tmp = str;
+	str = ft_memincr(str, full_len - len + reader);
 	*line = str;
 	ft_strdel(&tmp);
 }

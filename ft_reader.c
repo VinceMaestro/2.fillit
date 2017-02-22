@@ -6,7 +6,7 @@
 /*   By: ilarbi <ilarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 19:01:57 by ilarbi            #+#    #+#             */
-/*   Updated: 2017/01/31 20:24:52 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/02/22 16:39:02 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,20 @@ static	int	ft_isvalid(char *input)
 				j++;
 			}
 			if (j != 4 || *input != '\n')
-				exit(1);//ft_error("fichier non valide : colonnes\n");exit
+			{
+				ft_error("FT_READER");//ft_error("fichier non valide : colonnes\n");exit
+				return (0);
+			}
 			// printf("%c", *input);
 			input++;//passer du \n a la ligne vide
 			j = 0;
 			i++;
 		}
 		if (diese != 4 || i != 4)
-			exit(1);//ft_error("fichrer non valide: diese ou lignes\n");
+		{
+			ft_error("FT_READER");//ft_error("fichrer non valide: diese ou lignes\n");
+			return (0);
+		}
 		else
 			// printf("bloc valide\n");
 		pieces++;
@@ -116,7 +122,10 @@ static int	ft_scan_pieces(char **bloc, int pieces)
 			tmp[line++] = bloc[i++];
 		}
 		if (!ft_scan_bloc(tmp))
-			exit(1);
+		{
+			ft_error("FT_READER");
+			return (0);
+		}
 	//	while (line >= 0 && i >= 4 * (k - 1))
 	//		bloc[i--] = tmp[line--];
 		i = 4 * k;
@@ -136,12 +145,18 @@ int			ft_reader(char *input)
 	{
 		pieces = ft_isvalid(input);
 		if (pieces == 0)
-			exit(1);
+		{
+			ft_error("FT_READER");
+			return (0);
+		}
 		else
 			// printf("je dispose de %d pieces\n", pieces);
 		bloc = ft_strsplit(input, '\n');
 		if (!ft_scan_pieces(bloc, pieces))
-			exit(1);
+		{
+			ft_error("FT_READER");
+			return (0);
+		}
 		return (pieces);
 	}
 	return (0);

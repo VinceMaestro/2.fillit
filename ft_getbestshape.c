@@ -6,25 +6,12 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 04:15:14 by vpetit            #+#    #+#             */
-/*   Updated: 2017/02/16 06:42:24 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/02/22 17:20:46 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdlib.h>
-
-static t_matrix	*ft_m_increasedim(t_matrix *matrix)
-{
-	while (matrix)
-	{
-		matrix->dim += 1;
-		if (!matrix->next)
-			return (matrix = matrix->first);
-		matrix = matrix->next;
-	}
-	ft_error("FT_M_INCEASEDIM: Fail to increase matrix dim");
-	return (NULL);
-}
 
 static t_map	*ft_m_append(t_map **map, t_matrix *matrix)
 {
@@ -80,36 +67,35 @@ static t_map	*ft_m_pop(t_map **map, t_matrix *matrix)
 	return (*map);
 }
 
-static t_matrix	*ft_iter(t_matrix *matrix, t_map *map)
+static t_matrix	*ft_iter(t_matrix *mtrx, t_map *map)
 {
 	int			pop;
 	t_matrix	tmp;
 
 	pop = 0;
-	while (matrix)
+	while (mtrx)
 	{
-		while (!ft_m_append(&map, matrix) || pop == 1)
+		while (!ft_m_append(&map, mtrx) || pop == 1)
 		{
 			pop = 0;
-			if (matrix->pos[0].x == (tmp = *ft_m_xplus(matrix, 1)).pos[0].x)
+			if (mtrx->pos[0].x == (tmp = *ft_m_xplus(mtrx, 1)).pos[0].x)
 			{
-				if (matrix->pos[0].y == (tmp = *ft_m_yplus(matrix, -1)).pos[0].y)
+				if (mtrx->pos[0].y == (tmp = *ft_m_yplus(mtrx, -1)).pos[0].y)
 				{
-					ft_putstr(":INFO: FT_GETBESTSHAPE: Ft_iter: Depile\n");
-					matrix = ft_transfmatrix(matrix);
-					if (matrix == ft_m_prev(matrix))
+					mtrx = ft_transfmatrix(mtrx);
+					if (mtrx == ft_m_prev(mtrx))
 						return (NULL);
-					matrix = ft_m_prev(matrix);
-					map = ft_m_pop(&map, matrix);
+					mtrx = ft_m_prev(mtrx);
+					map = ft_m_pop(&map, mtrx);
 					pop = 1;
 				}
 				else
-					ft_m_xplus(matrix, -matrix->dim);
+					ft_m_xplus(mtrx, -mtrx->dim);
 			}
 		}
-		if (!matrix->next)
-			return (matrix = matrix->first);
-		matrix = matrix->next;
+		if (!mtrx->next)
+			return (mtrx = mtrx->first);
+		mtrx = mtrx->next;
 	}
 	ft_error("FT_ITER: Comes to an unexpected end");
 	return (NULL);
@@ -125,15 +111,11 @@ t_matrix		*ft_getbestshape(t_matrix *matrix)
 	ft_mapalloc(&map, matrix->dim);
 	while (!(tmp = ft_iter(matrix, &map)))
 	{
-		ft_putstr(":INFO: Finished one ft_iter\n");
-		ft_print_allmatrix(matrix);
 		matrix = ft_m_increasedim(matrix);
-		ft_print_allmatrix(matrix);
 		matrix = ft_transfallmatrix(matrix);
-		ft_print_allmatrix(matrix);
 		ft_mapalloc(&map, matrix->dim);
 	}
 	matrix = tmp;
-	// ft_printmap(map, matrix->dim);
+	ft_printmap(map, matrix->dim);
 	return (matrix);
 }

@@ -6,12 +6,12 @@
 /*   By: ilarbi <ilarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 18:40:54 by ilarbi            #+#    #+#             */
-/*   Updated: 2017/01/31 20:23:27 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/02/22 16:35:30 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include "libft/libft.h"
+#include "fillit.h"
 #include <stdlib.h>
 
 static	int		ft_right(char **bloc, int i, int j)

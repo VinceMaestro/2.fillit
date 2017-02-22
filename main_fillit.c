@@ -6,19 +6,14 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 18:25:36 by vpetit            #+#    #+#             */
-/*   Updated: 2017/02/16 07:00:48 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/02/22 17:11:56 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/uio.h>
-#include <unistd.h>
-#include <fcntl.h>
-
 #include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
 
 char	*ft_display_file(char *argv)
 {
@@ -62,20 +57,15 @@ int			main(int argc, char **argv)
 		piece_nb = ft_reader(line);
 		matrix = ft_matrix_maker(line, piece_nb);
 		ft_putstr("::INFO:: MAIN: -- SUCCESS -- Create Matrix\n");
-		// ft_print_allmatrix(matrix);
 		ft_putstr("===================================================\n");
 		matrix = ft_transfallmatrix(matrix);
 		ft_putstr("::INFO:: MAIN: -- SUCCESS -- Init Matrix Position\n");
-		// ft_print_allmatrix(matrix);
 		ft_putstr("===================================================\n");
 		matrix = ft_getbestshape(matrix);
 		ft_putstr("::INFO:: MAIN: -- SUCCESS -- Searching Best Matrix Setup\n");
-		// ft_print_allmatrix(matrix);
 		ft_putstr("===================================================\n");
-
 		//ft_map();
 		ft_putstr("::INFO:: MAIN: Missing ft_map integration\n");
-
 		ft_putstr("::INFO:: MAIN: -- SUCCESS -- Fillit\n");
 	}
 	else

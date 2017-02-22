@@ -18,7 +18,8 @@ SRCFILLIT = main_fillit.c \
 		ft_getbestshape.c \
 		ft_mapalloc.c \
 		ft_m_prev.c \
-		ft_printmap.c
+		ft_printmap.c \
+		ft_m_increasedim.c
 
 SRCLIB = ft_bzero.c \
 		ft_memcpy.c \
@@ -50,12 +51,12 @@ all: $(NAME)
 
 $(NAME) : $(SRC)
 			gcc $(CFLAGS) -c $(SRC) -g -I $(INCL)
-			gcc $(CFLAGS) $(OBJ) -o $(NAME)
+			gcc $(CFLAGS) $(OBJ) -o /tmp/forfillit/$(NAME)
 
 clean:
 	/bin/rm -f $(OBJ)
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	/bin/rm -f /tmp/forfillit/$(NAME)
 
 re: fclean all
