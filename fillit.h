@@ -52,7 +52,6 @@ t_matrix	*ft_getbestshape(t_matrix *matrix);
 t_matrix	*ft_transfallmatrix(t_matrix *matrix);
 t_matrix	*ft_transfmatrix(t_matrix *matrix);
 void		ft_printmatrix(t_matrix *matrix);
-t_matrix	*ft_getmatrix(t_matrix *matrix, char name);
 void		ft_print_allmatrix(t_matrix *matrix);
 int			ft_roundup_sqrt(int nb);
 t_map		*ft_mapalloc(t_map *map, int dim);

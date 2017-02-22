@@ -12,7 +12,6 @@ SRCFILLIT = main_fillit.c \
 		ft_m_yplus.c \
 		ft_isvalid_shape.c \
 		ft_printmatrix.c \
-		ft_getmatrix.c \
 		ft_print_allmatrix.c \
 		ft_roundup_sqrt.c \
 		ft_transfmatrix.c \

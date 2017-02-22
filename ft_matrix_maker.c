@@ -13,34 +13,6 @@
 #include "fillit.h"
 #include <stdlib.h>
 
-// static t_matrix	*ft_init_newmatrix(t_matrix *matrix, int dim)
-// {
-// 	matrix = ft_getmatrix(matrix, LAST);
-// 	matrix->next = (t_matrix*)malloc(sizeof(t_matrix));
-// 	(!(matrix->next) ? (ft_error("FAILED : malloc new matrix")) : (matrix));
-// 	matrix->next->name = matrix->name + 1;
-// 	matrix->next->dim = dim;
-// 	matrix->next->pos = (t_pos*)malloc(sizeof(t_pos) * 4);
-// 	if (!matrix->pos)
-// 		ft_error("Failed Malloc Pos new");
-// 	matrix->next->first = matrix->first;
-// 	matrix = matrix->next;
-// 	matrix->next = NULL;
-// 	return (matrix);
-// }
-//
-// static t_matrix	*ft_init_firstmatrix(t_matrix *matrix, int dim)
-// {
-// 	matrix->name = 'A';
-// 	matrix->dim = dim;
-// 	matrix->pos = (t_pos*)malloc(sizeof(t_pos) * 4);
-// 	if (!matrix->pos)
-// 		ft_error("Failed Malloc Pos first matrix");
-// 	matrix->first = matrix;
-// 	matrix->next = NULL;
-// 	return (matrix);
-// }
-
 static t_matrix	*ft_initmatrix(t_matrix *matrix, int piece_nb)
 {
 	int			i;
