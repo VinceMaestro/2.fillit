@@ -1,8 +1,8 @@
 # fillit
 42 project fillit
 
-:INFO: Algo (ft_getbestshape) en cours de debug
-
+:INFO: Algo: OK
+:INFO: A mettre a la norme + integration ft_map (+ leaks eventuelles)
 
 Rappel Git :
 	Tu viens de modifier le fichier : "file.c"
