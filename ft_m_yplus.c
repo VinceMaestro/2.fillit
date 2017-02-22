@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 16:44:08 by vpetit            #+#    #+#             */
-/*   Updated: 2017/02/16 05:37:10 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/02/22 18:06:02 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,11 @@ t_matrix	*ft_m_yplus(t_matrix *matrix, int num)
 		((matrix->pos[subunit].y + num <= 0 && matrix->pos[subunit].y +
 			num > -matrix->dim) ? (subunit++) : (end = 1));
 	}
-	if (end == 1)
-	{
-		if (num < -1)
-			return (matrix = ft_m_yplus(matrix, num + 1));
-		else if (num > 1)
-			return (matrix = ft_m_yplus(matrix, num - 1));
-	}
-	else if (subunit == 4)
+	if (end == 1 && num < -1)
+		return (matrix = ft_m_yplus(matrix, num + 1));
+	else if (end == 1 && num > 1)
+		return (matrix = ft_m_yplus(matrix, num - 1));
+	else if (end == 0 && subunit == 4)
 	{
 		subunit = 0;
 		while (subunit < 4)
