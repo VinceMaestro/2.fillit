@@ -38,7 +38,7 @@ SRCLIB = ft_bzero.c \
 
 LIBDIR = ./libft
 
-SRC = $(foreach element,$(SRCLIB), ./$(LIBDIR)/$(element)) \
+SRC = $(foreach element,$(SRCLIB), $(LIBDIR)/$(element)) \
 		$(SRCFILLIT)
 
 OBJ = $(SRCFILLIT:.c=.o)\
