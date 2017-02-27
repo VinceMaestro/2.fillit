@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 18:09:41 by vpetit            #+#    #+#             */
-/*   Updated: 2017/02/22 16:54:33 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/02/27 20:55:09 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	*ft_memincr(void *src, int new_size)
 			ft_memcpy(buff, src, new_size);
 	}
 	else
-		ft_error("memory allocation failed");
+		ft_error();
 	return (buff);
 }
 

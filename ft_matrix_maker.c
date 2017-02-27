@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 18:59:36 by vpetit            #+#    #+#             */
-/*   Updated: 2017/02/27 19:43:00 by ilarbi           ###   ########.fr       */
+/*   Updated: 2017/02/27 20:56:28 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ static t_matrix	*ft_initmatrix(t_matrix *matrix, int piece_nb)
 		{
 			matrix->next = (t_matrix*)malloc(sizeof(t_matrix));
 			matrix = matrix->next;
-			((!matrix) ? (ft_error("ft_initmatrix: Alloc failed")) : (matrix));
+			((!matrix) ? (ft_error()) : (matrix));
 		}
 		matrix->name = 'A' + i;
 		matrix->dim = dim;
 		matrix->pos = (t_pos*)malloc(sizeof(t_pos) * 4);
-		((!matrix->pos) ? (ft_error("ft_initmatrix: Alloc failed")) : (matrix));
+		((!matrix->pos) ? (ft_error()) : (matrix));
 		while (subunit < 4)
 		{
 			matrix->pos[subunit].x = 0;
@@ -84,7 +84,7 @@ t_matrix		*ft_matrix_maker(char *str, int piece_nb)
 
 	str_pos = 0;
 	matrix = (t_matrix*)malloc(sizeof(t_matrix));
-	((!matrix) ? (ft_error("matrix creation failed")) : (matrix));
+	((!matrix) ? (ft_error()) : (matrix));
 	matrix = ft_initmatrix(matrix, piece_nb);
 	while (str[str_pos])
 	{
@@ -106,7 +106,7 @@ t_matrix		*ft_matrix_maker(char *str, int piece_nb)
 				x_pos = -1;
 			}
 			else if (str[str_pos] != '.')
-				ft_error("input error");
+				ft_error();
 			while (subunit_nb == 4 && str[str_pos + 1] && \
 				!(str[str_pos] == '\n' && str[str_pos + 1] == '\n'))
 				str_pos++;
@@ -114,7 +114,7 @@ t_matrix		*ft_matrix_maker(char *str, int piece_nb)
 			str_pos++;
 		}
 		(((!str[str_pos] && matrix->next) || (str[str_pos] && !matrix->next)) ?\
-			(ft_error("try to read to long buffer")) : (matrix));
+			(ft_error()) : (matrix));
 		((matrix->next) ? (matrix = matrix->next) : (matrix));
 	}
 	matrix = matrix->first;

@@ -6,17 +6,15 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 13:59:43 by vpetit            #+#    #+#             */
-/*   Updated: 2017/01/12 20:24:48 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/02/27 20:58:50 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdlib.h>
 
-void	ft_error(char *msg)
+void	ft_error()
 {
-	ft_putstr_fd("error ", 2);
-	ft_putstr_fd(msg, 2);
-	ft_putstr_fd("\n", 2);
+	ft_putstr("error");
 	exit(1);
 }

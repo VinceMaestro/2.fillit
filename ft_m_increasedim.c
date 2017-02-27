@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 15:41:51 by vpetit            #+#    #+#             */
-/*   Updated: 2017/02/22 15:41:53 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/02/27 20:55:25 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ t_matrix	*ft_m_increasedim(t_matrix *matrix)
 			return (matrix = matrix->first);
 		matrix = matrix->next;
 	}
-	ft_error("FT_M_INCEASEDIM: Fail to increase matrix dim");
+	ft_error();
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 13:35:52 by vpetit            #+#    #+#             */
-/*   Updated: 2017/02/27 19:41:49 by ilarbi           ###   ########.fr       */
+/*   Updated: 2017/02/27 20:54:02 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ struct	s_map
 	int		**axis;
 };
 
-void		ft_error(char *msg);
+void		ft_error();
 void		ft_getstr(int open_fd, char **line);
 int			ft_isvalid_shape(char **bloc, int i, int j, int *count);
 int			ft_reader(char *input);
@@ -57,7 +57,7 @@ int			ft_roundup_sqrt(int nb);
 t_map		*ft_mapalloc(t_map *map, int dim);
 t_matrix	*ft_m_prev(t_matrix *matrix);
 void		ft_printmap(t_map map, int dim);
-char		**ft_map(t_matrix *first, void (*f)(char **map, t_matrix *elt));
+char		**ft_map(t_matrix *first);
 t_matrix	*ft_m_increasedim(t_matrix *matrix);
 
 #endif

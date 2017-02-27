@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 04:15:14 by vpetit            #+#    #+#             */
-/*   Updated: 2017/02/22 17:20:46 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/02/27 20:54:53 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ static t_map	*ft_m_append(t_map **map, t_matrix *matrix)
 			ft_printmatrix(matrix);
 			ft_putstr("Should be : ");
 			ft_putnbr(matrix->pos[cpt_mx].x);
-			ft_error("matrix X trop petite");
+			ft_error();
 		}
 		if (matrix->pos[cpt_mx].y <= -matrix->dim)
 		{
 			ft_putnbr(matrix->pos[cpt_mx].y);
-			ft_error("matrix Y trop petite");
+			ft_error();
 		}
 		if ((*map)->axis[matrix->pos[cpt_mx].x][-matrix->pos[cpt_mx].y] == 1)
 		{
@@ -55,7 +55,7 @@ static t_map	*ft_m_pop(t_map **map, t_matrix *matrix)
 	while (cpt_mx < 4)
 	{
 		if (!(*map)->axis[matrix->pos[cpt_mx].x][-matrix->pos[cpt_mx].y])
-			ft_error("FT_M_POP: pop fail");
+			ft_error();
 		cpt_mx++;
 	}
 	cpt_mx = 0;
@@ -97,7 +97,7 @@ static t_matrix	*ft_iter(t_matrix *mtrx, t_map *map)
 			return (mtrx = mtrx->first);
 		mtrx = mtrx->next;
 	}
-	ft_error("FT_ITER: Comes to an unexpected end");
+	ft_error();
 	return (NULL);
 }
 
@@ -107,7 +107,7 @@ t_matrix		*ft_getbestshape(t_matrix *matrix)
 	t_matrix	*tmp;
 
 	if (!matrix)
-		ft_error("FT_GETBESTSHAPE: Missing matrix");
+		ft_error();
 	ft_mapalloc(&map, matrix->dim);
 	while (!(tmp = ft_iter(matrix, &map)))
 	{
@@ -116,6 +116,5 @@ t_matrix		*ft_getbestshape(t_matrix *matrix)
 		ft_mapalloc(&map, matrix->dim);
 	}
 	matrix = tmp;
-	ft_printmap(map, matrix->dim);
 	return (matrix);
 }

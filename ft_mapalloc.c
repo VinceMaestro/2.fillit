@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 19:30:33 by vpetit            #+#    #+#             */
-/*   Updated: 2017/02/15 22:18:18 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/02/27 20:55:49 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ t_map			*ft_mapalloc(t_map *map, int dim)
 	cpt = 0;
 	map->axis = (int**)malloc(sizeof(int*) * dim);
 	if (!map->axis)
-		ft_error("FT_GETBESTSHAPE: Malloc failed");
+		ft_error();
 	while (cpt < dim)
 	{
 		map->axis[cpt] = (int*)malloc(sizeof(int) * dim);
 		if (!map->axis[cpt])
-			ft_error("FT_GETBESTSHAPE: Malloc failed");
+			ft_error();
 		cpt++;
 	}
 	map = ft_mapinit(map, dim);
