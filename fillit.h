@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 13:35:52 by vpetit            #+#    #+#             */
-/*   Updated: 2017/02/22 17:59:39 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/02/27 19:41:49 by ilarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int			ft_roundup_sqrt(int nb);
 t_map		*ft_mapalloc(t_map *map, int dim);
 t_matrix	*ft_m_prev(t_matrix *matrix);
 void		ft_printmap(t_map map, int dim);
+char		**ft_map(t_matrix *first, void (*f)(char **map, t_matrix *elt));
 t_matrix	*ft_m_increasedim(t_matrix *matrix);
 
 #endif

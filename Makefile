@@ -3,6 +3,7 @@ NAME = fillit
 CFLAGS = -Wall -Werror -Wextra
 
 SRCFILLIT = main_fillit.c \
+		ft_map.c \
 		ft_getstr.c \
 		ft_error.c \
 		ft_reader.c \
