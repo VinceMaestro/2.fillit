@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 13:35:52 by vpetit            #+#    #+#             */
-/*   Updated: 2017/02/27 20:54:02 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/03/01 16:24:55 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_matrix	*ft_matrix_maker(char *str, int piece_nb);
 t_matrix	*ft_m_xplus(t_matrix *matrix, int num);
 t_matrix	*ft_m_yplus(t_matrix *matrix, int num);
 t_matrix	*ft_getbestshape(t_matrix *matrix);
-t_matrix	*ft_transfallmatrix(t_matrix *matrix);
+t_matrix	*ft_transfallmatrix(t_matrix *matrix, int piece_nb);
 t_matrix	*ft_transfmatrix(t_matrix *matrix);
 void		ft_printmatrix(t_matrix *matrix);
 void		ft_print_allmatrix(t_matrix *matrix);

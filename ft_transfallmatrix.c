@@ -6,13 +6,36 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 13:10:26 by vpetit            #+#    #+#             */
-/*   Updated: 2017/02/16 05:38:34 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/03/01 16:37:40 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_matrix	*ft_transfallmatrix(t_matrix *matrix)
+static t_matrix	*ft_checkshape(t_matrix *matrix)
+{
+	int		dim;
+	int		subunit;
+
+	dim = matrix->dim;
+	subunit = 0;
+	while (subunit < 4)
+	{
+		if (matrix->pos[subunit].x >= dim || -matrix->pos[subunit].y >= dim)
+		{
+			matrix = matrix->first;
+			matrix = ft_m_increasedim(matrix);
+			return (ft_checkshape(matrix));
+		}
+		subunit++;
+	}
+	if (matrix->next)
+		return (ft_checkshape(matrix->next));
+	else
+		return (matrix = matrix->first);
+}
+
+t_matrix	*ft_transfallmatrix(t_matrix *matrix, int piece_nb)
 {
 	if (matrix)
 	{
@@ -24,5 +47,7 @@ t_matrix	*ft_transfallmatrix(t_matrix *matrix)
 		}
 		matrix = matrix->first;
 	}
+	if (piece_nb < 3)
+		matrix = ft_checkshape(matrix);
 	return (matrix);
 }

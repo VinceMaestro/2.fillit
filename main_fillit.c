@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 18:25:36 by vpetit            #+#    #+#             */
-/*   Updated: 2017/02/27 20:58:26 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/03/01 16:24:25 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int			main(int argc, char **argv)
 		matrix = ft_matrix_maker(line, piece_nb);
 		// ft_putstr("::INFO:: MAIN: -- SUCCESS -- Create Matrix\n");
 		// ft_putstr("===================================================\n");
-		matrix = ft_transfallmatrix(matrix);
+		matrix = ft_transfallmatrix(matrix, piece_nb);
 		// ft_putstr("::INFO:: MAIN: -- SUCCESS -- Init Matrix Position\n");
 		// ft_putstr("===================================================\n");
 		matrix = ft_getbestshape(matrix);
