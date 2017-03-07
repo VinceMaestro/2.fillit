@@ -6,7 +6,7 @@
 /*   By: ilarbi <ilarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 19:01:57 by ilarbi            #+#    #+#             */
-/*   Updated: 2017/03/07 15:38:32 by ilarbi           ###   ########.fr       */
+/*   Updated: 2017/03/07 15:52:14 by ilarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 #include <stdlib.h>
 #include "fillit.h"
 
-static	int	ft_isvalid_char(char c)
+static	int		ft_isvalid_char(char c)
 {
 	return ((c == '#' || c == '.') ? 1 : 0);
 }
 
-static	int	ft_isvalid(char *input)
+static	int		ft_isvalid(char *input)
 {
 	int		i;
 	int		j;
@@ -58,7 +58,7 @@ static	int	ft_isvalid(char *input)
 	return (0);
 }
 
-static int	ft_scan_bloc(char **tmp)
+static int		ft_scan_bloc(char **tmp)
 {
 	int	i;
 	int	j;
@@ -72,10 +72,7 @@ static int	ft_scan_bloc(char **tmp)
 	while (i < 4)
 	{
 		if (tmp[i][j] == '#')
-		{
-			ret = ft_isvalid_shape(tmp, i, j, &count);
-			return (ret);
-		}
+			return (ret = ft_isvalid_shape(tmp, i, j, &count));
 		j++;
 		if (j == 4)
 		{
@@ -86,7 +83,7 @@ static int	ft_scan_bloc(char **tmp)
 	return (0);
 }
 
-static int	ft_scan_pieces(char **bloc, int pieces)
+static	void	ft_scan_pieces(char **bloc, int pieces)
 {
 	int		i;
 	int		j;
@@ -102,19 +99,18 @@ static int	ft_scan_pieces(char **bloc, int pieces)
 	tmp[4] = 0;
 	while (i < 4 * k && k <= pieces)
 	{
-		while (line < 4)
+		while (line < 4)//line = i % 4
 		{
 			tmp[line] = (char *)malloc(sizeof(char *) * 5);
 			tmp[line++] = bloc[i++];
 		}
 		if (!ft_scan_bloc(tmp))
-			ft_error();//	return (0);
+			ft_error();
 		i = 4 * k;
 		k++;
 		j = 0;
 		line = 0;
 	}
-	return (1);
 }
 
 int			ft_reader(char *input)
@@ -126,10 +122,10 @@ int			ft_reader(char *input)
 	{
 		pieces = ft_isvalid(input);
 		if (pieces == 0)
-			ft_error();//return (0);
+			ft_error();
 		bloc = ft_strsplit(input, '\n');
 		if (!ft_scan_pieces(bloc, pieces))
-			ft_error();//	return (0);
+			ft_error();
 		return (pieces);
 	}
 	return (0);
