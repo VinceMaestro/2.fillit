@@ -6,7 +6,7 @@
 /*   By: ilarbi <ilarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 19:01:57 by ilarbi            #+#    #+#             */
-/*   Updated: 2017/02/27 20:57:38 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/03/07 13:38:16 by ilarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,28 +37,17 @@ static	int	ft_isvalid(char *input)
 			while (*input != '\n' && ft_isvalid_char(*input))//line
 			{
 				((*input == '#') ? diese++ : diese);
-				//((*input == '#') ? diese++ : (*input = '0'));
-				// printf(" %c ", *input);
 				input++;
 				j++;
 			}
 			if (j != 4 || *input != '\n')
-			{
-				ft_error();
-				return (0);
-			}
-			// printf("%c", *input);
+				ft_error();//return (0);
 			input++;//passer du \n a la ligne vide
 			j = 0;
 			i++;
 		}
 		if (diese != 4 || i != 4)
-		{
-			ft_error();
-			return (0);
-		}
-		else
-			// printf("bloc valide\n");
+			ft_error();//return (0);
 		pieces++;
 		diese = 0;
 		i = 0;
