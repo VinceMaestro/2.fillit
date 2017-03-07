@@ -6,7 +6,7 @@
 /*   By: ilarbi <ilarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 19:01:57 by ilarbi            #+#    #+#             */
-/*   Updated: 2017/03/07 13:38:16 by ilarbi           ###   ########.fr       */
+/*   Updated: 2017/03/07 15:38:32 by ilarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static	int	ft_isvalid(char *input)
 			i++;
 		}
 		if (diese != 4 || i != 4)
-			ft_error();//return (0);
+			ft_error();
 		pieces++;
 		diese = 0;
 		i = 0;
@@ -74,8 +74,6 @@ static int	ft_scan_bloc(char **tmp)
 		if (tmp[i][j] == '#')
 		{
 			ret = ft_isvalid_shape(tmp, i, j, &count);
-			// printf("isvalidshape = %d\n", ret);
-			//break;
 			return (ret);
 		}
 		j++;
@@ -110,12 +108,7 @@ static int	ft_scan_pieces(char **bloc, int pieces)
 			tmp[line++] = bloc[i++];
 		}
 		if (!ft_scan_bloc(tmp))
-		{
-			ft_error();
-			return (0);
-		}
-	//	while (line >= 0 && i >= 4 * (k - 1))
-	//		bloc[i--] = tmp[line--];
+			ft_error();//	return (0);
 		i = 4 * k;
 		k++;
 		j = 0;
@@ -133,18 +126,10 @@ int			ft_reader(char *input)
 	{
 		pieces = ft_isvalid(input);
 		if (pieces == 0)
-		{
-			ft_error();
-			return (0);
-		}
-		else
-			// printf("je dispose de %d pieces\n", pieces);
+			ft_error();//return (0);
 		bloc = ft_strsplit(input, '\n');
 		if (!ft_scan_pieces(bloc, pieces))
-		{
-			ft_error();
-			return (0);
-		}
+			ft_error();//	return (0);
 		return (pieces);
 	}
 	return (0);
