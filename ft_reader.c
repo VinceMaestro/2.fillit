@@ -6,7 +6,7 @@
 /*   By: ilarbi <ilarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 19:01:57 by ilarbi            #+#    #+#             */
-/*   Updated: 2017/03/07 15:52:14 by ilarbi           ###   ########.fr       */
+/*   Updated: 2017/03/10 17:30:58 by ilarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static int		ft_scan_bloc(char **tmp)
 	return (0);
 }
 
-static	void	ft_scan_pieces(char **bloc, int pieces)
+static	int		ft_scan_pieces(char **bloc, int pieces)
 {
 	int		i;
 	int		j;
@@ -111,6 +111,7 @@ static	void	ft_scan_pieces(char **bloc, int pieces)
 		j = 0;
 		line = 0;
 	}
+	return (1);
 }
 
 int			ft_reader(char *input)
