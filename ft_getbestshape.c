@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 04:15:14 by vpetit            #+#    #+#             */
-/*   Updated: 2017/03/01 17:22:15 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/03/10 18:20:09 by ilarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,14 @@ static t_matrix	*ft_iter(t_matrix *mtrx, t_map *map)
 	t_matrix	tmp;
 
 	pop = 0;
-	ft_putstr("Matrix dim : ");
-	ft_putnbr(mtrx->dim);
-	ft_putchar('\n');
+//	ft_putstr("Matrix dim : ");
+//	ft_putnbr(mtrx->dim);
+//	ft_putchar('\n');
 	while (mtrx)
 	{
-		ft_putstr("New Matrix : ");
-		ft_putchar(mtrx->name);
-		ft_putchar('\n');
+//		ft_putstr("New Matrix : ");
+//		ft_putchar(mtrx->name);
+//		ft_putchar('\n');
 		while (pop == 1 || !ft_m_append(&map, mtrx))
 		{
 			pop = 0;
@@ -78,36 +78,36 @@ static t_matrix	*ft_iter(t_matrix *mtrx, t_map *map)
 			{
 				if (mtrx->pos[0].y == (tmp = *ft_m_yplus(mtrx, -1)).pos[0].y)
 				{
-					ft_putstr("=====================================\n");
+//					ft_putstr("=====================================\n");
 					mtrx = ft_transfmatrix(mtrx);
-					ft_putstr("Replace matrice en haut a gauche pour prochaine utilisation : ");
-					ft_putchar(mtrx->name);
-					ft_putchar('\n');
+//					ft_putstr("Replace matrice en haut a gauche pour prochaine utilisation : ");
+//					ft_putchar(mtrx->name);
+//					ft_putchar('\n');
 					if (mtrx == ft_m_prev(mtrx))
 					{
-						ft_putstr("La matrice precedente est la meme que l'acctuelle donc, increase matrix dim\n");
+//						ft_putstr("La matrice precedente est la meme que l'acctuelle donc, increase matrix dim\n");
 						return (NULL);
 					}
-					ft_putstr("Matrix pop\n");
+//					ft_putstr("Matrix pop\n");
 					mtrx = ft_m_prev(mtrx);
-					ft_putstr("Matrix is now : ");
-					ft_putchar(mtrx->name);
-					ft_putchar('\n');
+//					ft_putstr("Matrix is now : ");
+//					ft_putchar(mtrx->name);
+//					ft_putchar('\n');
 					map = ft_m_pop(&map, mtrx);
 					pop = 1;
-					ft_putstr("Pop = 1 donc la matrice acctuelle avait deja ete placee mais on doit la deplacer car la matrice suivante ne loge pas\n");
+//					ft_putstr("Pop = 1 donc la matrice acctuelle avait deja ete placee mais on doit la deplacer car la matrice suivante ne loge pas\n");
 				}
 				else
 				{
-					ft_putstr("y moins\n");
-					ft_putstr("reset x\n");
+//					ft_putstr("y moins\n");
+//					ft_putstr("reset x\n");
 					ft_m_xplus(mtrx, -mtrx->dim);
 				}
 			}
-			else
-				ft_putstr("x plus\n");
+//			else
+//				ft_putstr("x plus\n");
 		}
-		ft_putstr("Matrix callée\n");
+//		ft_putstr("Matrix callée\n");
 		if (!mtrx->next)
 			return (mtrx = mtrx->first);
 		mtrx = mtrx->next;

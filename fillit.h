@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 13:35:52 by vpetit            #+#    #+#             */
-/*   Updated: 2017/03/01 16:24:55 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/03/10 18:59:47 by ilarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 typedef struct s_matrix	t_matrix;
 typedef struct s_pos	t_pos;
 typedef struct s_map	t_map;
+typedef	struct s_pieces	t_pieces;
 
 struct	s_matrix
 {
@@ -39,6 +40,14 @@ struct	s_pos
 struct	s_map
 {
 	int		**axis;
+};
+
+struct	s_pieces
+{
+	int		i;
+	int		j;
+	int		diese;
+	int		pieces;
 };
 
 void		ft_error();

@@ -6,7 +6,7 @@
 /*   By: ilarbi <ilarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 19:01:57 by ilarbi            #+#    #+#             */
-/*   Updated: 2017/03/10 17:30:58 by ilarbi           ###   ########.fr       */
+/*   Updated: 2017/03/10 18:51:45 by ilarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,31 +26,28 @@ static	int		ft_isvalid(char *input)
 	int		diese;
 	int		pieces;
 
-	i = 0;
-	j = 0;
-	diese = 0;
 	pieces = 0;
-	while (*input)//file
+	while (*input)
 	{
-		while (*input != '\n' && (*input && *(input + 1) != '\n'))//bloc
+		i = 0;
+		diese = 0;
+		while (*input != '\n' && (*input && *(input + 1) != '\n'))
 		{
-			while (*input != '\n' && ft_isvalid_char(*input))//line
+		j = 0;
+			while (*input != '\n' && ft_isvalid_char(*input))
 			{
 				((*input == '#') ? diese++ : diese);
 				input++;
 				j++;
 			}
 			if (j != 4 || *input != '\n')
-				ft_error();//return (0);
+				ft_error();
 			input++;//passer du \n a la ligne vide
-			j = 0;
 			i++;
 		}
 		if (diese != 4 || i != 4)
 			ft_error();
 		pieces++;
-		diese = 0;
-		i = 0;
 		if (*input == '\0')
 		   return (pieces);
 		input++;//1er char bloc suiv.
@@ -72,7 +69,7 @@ static int		ft_scan_bloc(char **tmp)
 	while (i < 4)
 	{
 		if (tmp[i][j] == '#')
-			return (ret = ft_isvalid_shape(tmp, i, j, &count));
+			return ((ret = ft_isvalid_shape(tmp, i, j, &count)));
 		j++;
 		if (j == 4)
 		{
@@ -92,14 +89,14 @@ static	int		ft_scan_pieces(char **bloc, int pieces)
 	char	**tmp;
 
 	i = 0;
-	j = 0;
 	k = 1;
-	line = 0;
 	tmp = (char **)malloc(sizeof(char *) * 5);
 	tmp[4] = 0;
 	while (i < 4 * k && k <= pieces)
 	{
-		while (line < 4)//line = i % 4
+		j = 0;
+		line = 0;
+		while (line < 4)
 		{
 			tmp[line] = (char *)malloc(sizeof(char *) * 5);
 			tmp[line++] = bloc[i++];
@@ -108,8 +105,6 @@ static	int		ft_scan_pieces(char **bloc, int pieces)
 			ft_error();
 		i = 4 * k;
 		k++;
-		j = 0;
-		line = 0;
 	}
 	return (1);
 }
