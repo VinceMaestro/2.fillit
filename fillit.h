@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 13:35:52 by vpetit            #+#    #+#             */
-/*   Updated: 2017/03/10 18:59:47 by ilarbi           ###   ########.fr       */
+/*   Updated: 2017/03/10 19:16:58 by ilarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 # include "./libft/libft.h"
 
 # define LAST 1
+# define I t_p.i
+# define J t_p.j
+# define DIESE t_p.diese
+# define PIECES t_p.pieces
 
 typedef struct s_matrix	t_matrix;
 typedef struct s_pos	t_pos;

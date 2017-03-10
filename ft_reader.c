@@ -6,7 +6,7 @@
 /*   By: ilarbi <ilarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 19:01:57 by ilarbi            #+#    #+#             */
-/*   Updated: 2017/03/10 18:51:45 by ilarbi           ###   ########.fr       */
+/*   Updated: 2017/03/10 19:19:26 by ilarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,35 +21,32 @@ static	int		ft_isvalid_char(char c)
 
 static	int		ft_isvalid(char *input)
 {
-	int		i;
-	int		j;
-	int		diese;
-	int		pieces;
+	t_pieces t_p;
 
-	pieces = 0;
+	PIECES = 0;
 	while (*input)
 	{
-		i = 0;
-		diese = 0;
+		I = 0;
+		DIESE = 0;
 		while (*input != '\n' && (*input && *(input + 1) != '\n'))
 		{
-		j = 0;
+			J = 0;
 			while (*input != '\n' && ft_isvalid_char(*input))
 			{
-				((*input == '#') ? diese++ : diese);
+				((*input == '#') ? DIESE++ : DIESE);
 				input++;
-				j++;
+				J++;
 			}
-			if (j != 4 || *input != '\n')
+			if (J != 4 || *input != '\n')
 				ft_error();
 			input++;//passer du \n a la ligne vide
-			i++;
+			I++;
 		}
-		if (diese != 4 || i != 4)
+		if (DIESE != 4 || I != 4)
 			ft_error();
-		pieces++;
+		PIECES++;
 		if (*input == '\0')
-		   return (pieces);
+		   return (PIECES);
 		input++;//1er char bloc suiv.
 	}
 	return (0);
