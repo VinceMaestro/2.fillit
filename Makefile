@@ -8,14 +8,13 @@ SRCFILLIT = main_fillit.c \
 		ft_error.c \
 		ft_reader.c \
 		ft_matrix_maker.c \
-		ft_transfallmatrix.c \
 		ft_m_xplus.c \
 		ft_m_yplus.c \
 		ft_isvalid_shape.c \
 		ft_printmatrix.c \
 		ft_print_allmatrix.c \
 		ft_roundup_sqrt.c \
-		ft_transfmatrix.c \
+		ft_transform.c \
 		ft_getbestshape.c \
 		ft_mapalloc.c \
 		ft_m_prev.c \
@@ -35,7 +34,8 @@ SRCLIB = ft_bzero.c \
 		ft_isalpha.c \
 		ft_tolower.c \
 		ft_toupper.c \
-		ft_strdel.c
+		ft_strdel.c \
+		ft_strcmp.c
 
 LIBDIR = ./libft
 

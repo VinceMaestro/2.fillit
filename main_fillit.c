@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 18:25:36 by vpetit            #+#    #+#             */
-/*   Updated: 2017/03/01 16:24:25 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/03/11 16:32:06 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ int			main(int argc, char **argv)
 	int			piece_nb;
 
 	piece_nb = 0;
-	// ft_putstr("===================================================\n");
-	// ft_putstr("::INFO:: -- Start --\t");
 	if (argc == 1)
 	{
 		ft_error();
@@ -49,23 +47,12 @@ int			main(int argc, char **argv)
 	}
 	else if (argc == 2)
 	{
-		// ft_putstr("File :  ");
-		// ft_putstr(argv[1]);
-		// ft_putstr(" \n");
-		// ft_putstr("===================================================\n");
 		line = ft_display_file(argv[1]);
 		piece_nb = ft_reader(line);
 		matrix = ft_matrix_maker(line, piece_nb);
-		// ft_putstr("::INFO:: MAIN: -- SUCCESS -- Create Matrix\n");
-		// ft_putstr("===================================================\n");
-		matrix = ft_transfallmatrix(matrix, piece_nb);
-		// ft_putstr("::INFO:: MAIN: -- SUCCESS -- Init Matrix Position\n");
-		// ft_putstr("===================================================\n");
+		matrix = ft_transform("ALL", matrix, piece_nb);
 		matrix = ft_getbestshape(matrix);
-		// ft_putstr("::INFO:: MAIN: -- SUCCESS -- Searching Best Matrix Setup\n");
-		// ft_putstr("===================================================\n");
 		ft_map(matrix);
-		// ft_putstr("::INFO:: MAIN: -- SUCCESS -- Fillit\n");
 	}
 	else
 		ft_error();

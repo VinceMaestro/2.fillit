@@ -6,14 +6,14 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 13:59:43 by vpetit            #+#    #+#             */
-/*   Updated: 2017/02/27 20:58:50 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/03/11 15:49:34 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdlib.h>
 
-void	ft_error()
+void	ft_error(void)
 {
 	ft_putstr("error");
 	exit(1);
