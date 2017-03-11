@@ -6,26 +6,27 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 13:35:52 by vpetit            #+#    #+#             */
-/*   Updated: 2017/03/11 16:35:31 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/03/11 17:56:17 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
 # define FILLIT_H
+
+# include "libft.h"
+
 # define LAST 1
 # define I t_p.i
 # define J t_p.j
 # define DIESE t_p.diese
 # define PIECES t_p.pieces
 
-# include "./libft/libft.h"
-
 typedef struct s_matrix	t_matrix;
 typedef struct s_pos	t_pos;
 typedef struct s_map	t_map;
 typedef struct s_pieces	t_pieces;
 
-struct	s_matrix
+struct		s_matrix
 {
 	char		name;
 	int			dim;
@@ -34,18 +35,18 @@ struct	s_matrix
 	t_matrix	*next;
 };
 
-struct	s_pos
+struct		s_pos
 {
 	int			x;
 	int			y;
 };
 
-struct	s_map
+struct		s_map
 {
 	int			**axis;
 };
 
-struct	s_pieces
+struct		s_pieces
 {
 	int			i;
 	int			j;

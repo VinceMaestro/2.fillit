@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 18:25:36 by vpetit            #+#    #+#             */
-/*   Updated: 2017/03/11 16:32:06 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/03/11 18:18:47 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-char	*ft_display_file(char *argv)
+static char	*ft_display_file(char *argv)
 {
 	int			open_fd;
 	char		**line;
