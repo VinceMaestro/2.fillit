@@ -6,7 +6,7 @@
 /*   By: ilarbi <ilarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 19:01:57 by ilarbi            #+#    #+#             */
-/*   Updated: 2017/03/10 19:19:26 by ilarbi           ###   ########.fr       */
+/*   Updated: 2017/03/10 19:44:25 by ilarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 #include <stdlib.h>
 #include "fillit.h"
 
-static	int		ft_isvalid_char(char c)
+static	void	get_shit_done(char *input, t_pieces *t_p)
 {
-	return ((c == '#' || c == '.') ? 1 : 0);
+	(((*input) == '#') ? (D)++ : D);
+	(*input)++;
+	(Ji)++;
 }
 
 static	int		ft_isvalid(char *input)
@@ -31,23 +33,25 @@ static	int		ft_isvalid(char *input)
 		while (*input != '\n' && (*input && *(input + 1) != '\n'))
 		{
 			J = 0;
-			while (*input != '\n' && ft_isvalid_char(*input))
+			while (*input != '\n' && (*input == '#' || *input == '.'))
 			{
+				get_shit_done(&(*input), &t_p);
+				/*
 				((*input == '#') ? DIESE++ : DIESE);
 				input++;
-				J++;
+				J++;*/
 			}
 			if (J != 4 || *input != '\n')
 				ft_error();
-			input++;//passer du \n a la ligne vide
+			input++;
 			I++;
 		}
 		if (DIESE != 4 || I != 4)
 			ft_error();
 		PIECES++;
 		if (*input == '\0')
-		   return (PIECES);
-		input++;//1er char bloc suiv.
+			return (PIECES);
+		input++;
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 13:35:52 by vpetit            #+#    #+#             */
-/*   Updated: 2017/03/10 19:16:58 by ilarbi           ###   ########.fr       */
+/*   Updated: 2017/03/10 19:42:14 by ilarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # define J t_p.j
 # define DIESE t_p.diese
 # define PIECES t_p.pieces
+# define D t_p->diese
+# define Ji t_p->j
 
 typedef struct s_matrix	t_matrix;
 typedef struct s_pos	t_pos;
