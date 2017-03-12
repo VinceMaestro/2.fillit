@@ -6,7 +6,7 @@
 /*   By: ilarbi <ilarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 19:01:57 by ilarbi            #+#    #+#             */
-/*   Updated: 2017/03/10 19:44:25 by ilarbi           ###   ########.fr       */
+/*   Updated: 2017/03/12 16:25:12 by ilarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 static	void	get_shit_done(char *input, t_pieces *t_p)
 {
-	(((*input) == '#') ? (D)++ : D);
+	(((*input) == '#') ? (t_p->diese)++ : t_p->diese);
 	(*input)++;
-	(Ji)++;
+	(t_p->j)++;
 }
 
 static	int		ft_isvalid(char *input)
