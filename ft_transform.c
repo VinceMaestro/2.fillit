@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_transfallmatrix.c                               :+:      :+:    :+:   */
+/*   ft_transform.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 13:10:26 by vpetit            #+#    #+#             */
-/*   Updated: 2017/03/11 16:25:26 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/03/16 17:49:48 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static t_matrix	*ft_checkshape(t_matrix *matrix)
 		if (matrix->pos[subunit].x >= dim || -matrix->pos[subunit].y >= dim)
 		{
 			matrix = matrix->first;
-			matrix = ft_m_increasedim(matrix);
+			matrix = ft_m_op("incrdim", matrix, 0);
 			return (ft_checkshape(matrix));
 		}
 		subunit++;
@@ -37,8 +37,8 @@ static t_matrix	*ft_checkshape(t_matrix *matrix)
 
 static t_matrix	*ft_transfmatrix(t_matrix *matrix)
 {
-	matrix = ft_m_xplus(matrix, -matrix->dim);
-	matrix = ft_m_yplus(matrix, matrix->dim);
+	matrix = ft_m_op("X ", matrix, -matrix->dim);
+	matrix = ft_m_op("Y ", matrix, matrix->dim);
 	return (matrix);
 }
 

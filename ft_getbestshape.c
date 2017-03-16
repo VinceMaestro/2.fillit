@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 04:15:14 by vpetit            #+#    #+#             */
-/*   Updated: 2017/03/11 16:28:06 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/03/16 17:52:06 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,18 +61,19 @@ static t_matrix	*ft_test_iter(t_matrix *mtrx, t_map **map, int *pop)
 {
 	t_matrix	tmp;
 
-	if (mtrx->pos[0].x == (tmp = *ft_m_xplus(mtrx, 1)).pos[0].x)
+	if (mtrx->pos[0].x == (tmp = *ft_m_op("X ", mtrx, 1)).pos[0].x)
 	{
-		if (mtrx->pos[0].y == (tmp = *ft_m_yplus(mtrx, -1)).pos[0].y)
+		if (mtrx->pos[0].y == (tmp = *ft_m_op("Y ", mtrx, -1)).pos[0].y)
 		{
 			mtrx = ft_transform("1", mtrx, 0);
-			if (mtrx == ft_m_prev(mtrx) || !(mtrx = ft_m_prev(mtrx)))
+			if (mtrx == ft_m_op("prev", mtrx, 0) || \
+				!(mtrx = ft_m_op("prev", mtrx, 0)))
 				return (NULL);
 			*map = ft_m_pop(map, mtrx);
 			*pop = 1;
 		}
 		else
-			ft_m_xplus(mtrx, -mtrx->dim);
+			ft_m_op("X ", mtrx, -mtrx->dim);
 	}
 	return (mtrx);
 }
@@ -109,7 +110,7 @@ t_matrix		*ft_getbestshape(t_matrix *matrix)
 	ft_mapalloc(&map, matrix->dim);
 	while (!(tmp = ft_iter(matrix, &map)))
 	{
-		matrix = ft_m_increasedim(matrix);
+		matrix = ft_m_op("incrdim", matrix, 0);
 		matrix = ft_transform("1", matrix, 0);
 		ft_mapalloc(&map, matrix->dim);
 	}

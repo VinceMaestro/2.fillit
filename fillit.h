@@ -6,8 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 13:35:52 by vpetit            #+#    #+#             */
-/*   Updated: 2017/03/12 16:28:49 by ilarbi           ###   ########.fr       */
-/*   Updated: 2017/03/11 17:56:17 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/03/16 17:39:40 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,22 +54,15 @@ struct		s_pieces
 	int			pieces;
 };
 
-void		ft_error();
+void		ft_error(void);
 void		ft_getstr(int open_fd, char **line);
 int			ft_isvalid_shape(char **bloc, int i, int j, int *count);
 int			ft_reader(char *input);
 t_matrix	*ft_matrix_maker(char *str, int piece_nb);
-t_matrix	*ft_m_xplus(t_matrix *matrix, int num);
-t_matrix	*ft_m_yplus(t_matrix *matrix, int num);
+t_matrix	*ft_m_op(char *axis, t_matrix *matrix, int num);
 t_matrix	*ft_getbestshape(t_matrix *matrix);
 t_matrix	*ft_transform(char *str, t_matrix *matrix, int piece_nb);
-void		ft_printmatrix(t_matrix *matrix);
-void		ft_print_allmatrix(t_matrix *matrix);
-int			ft_roundup_sqrt(int nb);
 t_map		*ft_mapalloc(t_map *map, int dim);
-t_matrix	*ft_m_prev(t_matrix *matrix);
-void		ft_printmap(t_map map, int dim);
 char		**ft_map(t_matrix *first);
-t_matrix	*ft_m_increasedim(t_matrix *matrix);
 
 #endif

@@ -8,15 +8,11 @@ SRC = main_fillit.c \
 		ft_error.c \
 		ft_reader.c \
 		ft_matrix_maker.c \
-		ft_m_xplus.c \
-		ft_m_yplus.c \
+		ft_m_op.c \
 		ft_isvalid_shape.c \
-		ft_roundup_sqrt.c \
 		ft_transform.c \
 		ft_getbestshape.c \
 		ft_mapalloc.c \
-		ft_m_prev.c \
-		ft_m_increasedim.c
 
 LIBDIR = ./libft
 

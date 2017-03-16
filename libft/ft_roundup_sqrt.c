@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_m_prev.c                                        :+:      :+:    :+:   */
+/*   ft_roundup_sqrt.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/08 19:39:43 by vpetit            #+#    #+#             */
-/*   Updated: 2017/03/10 18:15:27 by ilarbi           ###   ########.fr       */
+/*   Created: 2017/02/01 04:00:50 by vpetit            #+#    #+#             */
+/*   Updated: 2017/03/16 17:41:48 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-t_matrix	*ft_m_prev(t_matrix *matrix)
+int		ft_roundup_sqrt(int nb)
 {
-	t_matrix	*current;
+	int		a;
 
-	current = matrix;
-	matrix = matrix->first;
-	while (matrix->next != current && matrix != current)
-		matrix = matrix->next;
-	return (matrix);
+	a = 0;
+	if (!nb || nb < 0 || nb > 2147395600)
+		return (0);
+	while (a * a < nb)
+		a += 1;
+	return (a);
 }

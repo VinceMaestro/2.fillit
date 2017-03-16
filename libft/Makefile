@@ -6,7 +6,7 @@
 #    By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/18 21:24:23 by vpetit            #+#    #+#              #
-#    Updated: 2017/01/04 05:50:01 by vpetit           ###   ########.fr        #
+#    Updated: 2017/03/16 17:44:09 by vpetit           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,6 +79,7 @@ SRC = ft_atoi \
 		ft_isinvisible \
 		ft_foreach \
 		ft_count_if \
+		ft_roundup_sqrt \
 		ft_max \
 		ft_min
 
