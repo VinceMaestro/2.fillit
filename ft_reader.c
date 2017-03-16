@@ -6,11 +6,10 @@
 /*   By: ilarbi <ilarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 19:01:57 by ilarbi            #+#    #+#             */
-/*   Updated: 2017/03/16 17:17:01 by ilarbi           ###   ########.fr       */
+/*   Updated: 2017/03/16 17:37:00 by ilarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdlib.h>
 #include "fillit.h"
 
@@ -23,7 +22,7 @@ static	void	get_shit_done(char **input, t_pieces *t_p)
 
 static	int		ft_isvalid(char *input)
 {
-	t_pieces 	t_p;
+	t_pieces	t_p;
 
 	PIECES = 0;
 	while (*input)
@@ -34,13 +33,7 @@ static	int		ft_isvalid(char *input)
 		{
 			J = 0;
 			while (*input != '\n' && (*input == '#' || *input == '.'))
-			{
 				get_shit_done(&input, &t_p);
-				/*
-				((*input == '#') ? DIESE++ : DIESE);
-				input++;
-				J++;*/
-			}
 			if (J != 4 || *input != '\n')
 				ft_error();
 			input++;
@@ -58,10 +51,10 @@ static	int		ft_isvalid(char *input)
 
 static int		ft_scan_bloc(char **tmp)
 {
-	int	i;
-	int	j;
-	int	count;
-	int ret;
+	int			i;
+	int			j;
+	int			count;
+	int			ret;
 
 	i = 0;
 	j = 0;
@@ -83,11 +76,11 @@ static int		ft_scan_bloc(char **tmp)
 
 static	int		ft_scan_pieces(char **bloc, int pieces)
 {
-	int		i;
-	int		j;
-	int		k;
-	int		line;
-	char	**tmp;
+	int			i;
+	int			j;
+	int			k;
+	int			line;
+	char		**tmp;
 
 	i = 0;
 	k = 1;
@@ -110,7 +103,7 @@ static	int		ft_scan_pieces(char **bloc, int pieces)
 	return (1);
 }
 
-int			ft_reader(char *input)
+int				ft_reader(char *input)
 {
 	int		pieces;
 	char	**bloc;
