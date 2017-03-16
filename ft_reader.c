@@ -6,7 +6,7 @@
 /*   By: ilarbi <ilarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 19:01:57 by ilarbi            #+#    #+#             */
-/*   Updated: 2017/03/12 16:25:12 by ilarbi           ###   ########.fr       */
+/*   Updated: 2017/03/16 16:18:54 by ilarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 #include <stdlib.h>
 #include "fillit.h"
 
-static	void	get_shit_done(char *input, t_pieces *t_p)
+static	void	get_shit_done(char **input, t_pieces *t_p)
 {
-	(((*input) == '#') ? (t_p->diese)++ : t_p->diese);
+	((*(*input) == '#') ? (t_p->diese)++ : t_p->diese);
 	(*input)++;
 	(t_p->j)++;
 }
 
 static	int		ft_isvalid(char *input)
 {
-	t_pieces t_p;
+	t_pieces 	t_p;
 
 	PIECES = 0;
 	while (*input)
@@ -35,7 +35,7 @@ static	int		ft_isvalid(char *input)
 			J = 0;
 			while (*input != '\n' && (*input == '#' || *input == '.'))
 			{
-				get_shit_done(&(*input), &t_p);
+				get_shit_done(&input, &t_p);
 				/*
 				((*input == '#') ? DIESE++ : DIESE);
 				input++;
