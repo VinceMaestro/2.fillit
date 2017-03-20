@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 13:35:52 by vpetit            #+#    #+#             */
-/*   Updated: 2017/03/20 16:17:30 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/03/20 19:46:53 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ struct		s_pieces
 };
 
 void		ft_error(void);
-void		ft_getstr(int open_fd, char **line);
-int			ft_isvalid_shape(char **bloc, int i, int j, int *count);
 int			ft_reader(char *input);
 t_matrix	*ft_matrix_maker(char *str, int piece_nb);
 t_matrix	*ft_m_op(char *axis, t_matrix *matrix, int num);

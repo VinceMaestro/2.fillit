@@ -6,19 +6,12 @@
 /*   By: ilarbi <ilarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 19:01:57 by ilarbi            #+#    #+#             */
-/*   Updated: 2017/03/16 17:56:09 by ilarbi           ###   ########.fr       */
+/*   Updated: 2017/03/20 19:46:33 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "fillit.h"
-
-static	void	get_shit_done(char **input, t_pieces *t_p)
-{
-	((*(*input) == '#') ? (t_p->diese)++ : t_p->diese);
-	(*input)++;
-	(t_p->j)++;
-}
 
 static	int		ft_isvalid(char *input)
 {
@@ -31,9 +24,9 @@ static	int		ft_isvalid(char *input)
 		DIESE = 0;
 		while (*input != '\n' && (*input && *(input + 1) != '\n'))
 		{
-			J = 0;
+			J = -1;
 			while (*input != '\n' && (*input == '#' || *input == '.'))
-				get_shit_done(&input, &t_p);
+				((t_p.j++ && *(input++) == '#') ? (t_p.diese)++ : t_p.diese);
 			if (J != 4 || *input != '\n')
 				ft_error();
 			input++;
@@ -47,6 +40,29 @@ static	int		ft_isvalid(char *input)
 		input++;
 	}
 	return (0);
+}
+
+static int		ft_isvalid_shape(char **bloc, int i, int j, int *count)
+{
+	*count += 1;
+	bloc[i][j] = '1';
+	if (((i - 1) >= 0) && ((j) >= 0) && bloc[i - 1][j] == '#')
+	{
+		ft_isvalid_shape(bloc, (i - 1), j, count);
+	}
+	if (i < 4 && ((j + 1) < 4) && bloc[i][j + 1] == '#')
+	{
+		ft_isvalid_shape(bloc, i, (j + 1), count);
+	}
+	if (i < 4 && ((j - 1) >= 0) && bloc[i][j - 1] == '#')
+	{
+		ft_isvalid_shape(bloc, i, (j - 1), count);
+	}
+	if (((i + 1) < 4) && bloc[i + 1][j] == '#')
+	{
+		ft_isvalid_shape(bloc, (i + 1), j, count);
+	}
+	return ((*count == 4) ? 1 : 0);
 }
 
 static int		ft_scan_bloc(char **tmp)
