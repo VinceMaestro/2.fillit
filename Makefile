@@ -2,7 +2,7 @@ NAME = fillit
 
 CFLAGS = -Wall -Werror -Wextra
 
-SRC = main_fillit.c \
+SRC = main.c \
 		ft_map.c \
 		ft_error.c \
 		ft_reader.c \

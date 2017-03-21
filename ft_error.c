@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 13:59:43 by vpetit            #+#    #+#             */
-/*   Updated: 2017/03/11 15:49:34 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/03/21 16:32:24 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 void	ft_error(void)
 {
-	ft_putstr("error");
+	ft_putstr("error\n");
 	exit(1);
 }

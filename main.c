@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 18:25:36 by vpetit            #+#    #+#             */
-/*   Updated: 2017/03/20 16:28:20 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/03/21 16:29:44 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,7 @@ int			main(int argc, char **argv)
 	int			piece_nb;
 
 	piece_nb = 0;
-	if (argc == 1)
-	{
-		ft_error();
-		return (-1);
-	}
-	else if (argc == 2)
+	if (argc == 2)
 	{
 		line = ft_display_file(argv[1]);
 		piece_nb = ft_reader(line);
@@ -101,6 +96,9 @@ int			main(int argc, char **argv)
 		ft_map(matrix);
 	}
 	else
-		ft_error();
-	return (-1);
+	{
+		ft_putstr("usage: ./fillit source_file\n");
+		exit(1);
+		return (-1);
+	}
 }
