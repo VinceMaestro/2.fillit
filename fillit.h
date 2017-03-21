@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 13:35:52 by vpetit            #+#    #+#             */
-/*   Updated: 2017/03/20 19:46:53 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/03/21 18:24:36 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,6 @@
 # define FILLIT_H
 
 # include "libft.h"
-
-# define LAST 1
-# define I t_p.i
-# define J t_p.j
-# define DIESE t_p.diese
-# define PIECES t_p.pieces
 
 typedef struct s_matrix	t_matrix;
 typedef struct s_pos	t_pos;

@@ -6,7 +6,7 @@
 /*   By: ilarbi <ilarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 19:01:57 by ilarbi            #+#    #+#             */
-/*   Updated: 2017/03/20 19:46:33 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/03/21 18:24:10 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,26 @@ static	int		ft_isvalid(char *input)
 {
 	t_pieces	t_p;
 
-	PIECES = 0;
+	t_p.pieces = 0;
 	while (*input)
 	{
-		I = 0;
-		DIESE = 0;
+		t_p.i = 0;
+		t_p.diese = 0;
 		while (*input != '\n' && (*input && *(input + 1) != '\n'))
 		{
-			J = -1;
+			t_p.j = -1;
 			while (*input != '\n' && (*input == '#' || *input == '.'))
 				((t_p.j++ && *(input++) == '#') ? (t_p.diese)++ : t_p.diese);
-			if (J != 4 || *input != '\n')
+			if (t_p.j != 4 || *input != '\n')
 				ft_error();
 			input++;
-			I++;
+			t_p.i++;
 		}
-		if (DIESE != 4 || I != 4)
+		if (t_p.diese != 4 || t_p.i != 4)
 			ft_error();
-		PIECES++;
+		t_p.pieces++;
 		if (*input == '\0')
-			return (PIECES);
+			return (t_p.pieces);
 		input++;
 	}
 	return (0);

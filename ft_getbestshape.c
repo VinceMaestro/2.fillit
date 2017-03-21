@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 04:15:14 by vpetit            #+#    #+#             */
-/*   Updated: 2017/03/16 17:52:06 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/03/21 18:21:41 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,6 @@ static t_map	*ft_m_append(t_map **map, t_matrix *matrix)
 	cpt_mx = 0;
 	while (cpt_mx < 4)
 	{
-		if (matrix->pos[cpt_mx].x >= matrix->dim)
-			ft_error();
-		if (matrix->pos[cpt_mx].y <= -matrix->dim)
-			ft_error();
 		if ((*map)->axis[matrix->pos[cpt_mx].x][-matrix->pos[cpt_mx].y] == 1)
 			return (NULL);
 		cpt_mx++;
@@ -44,13 +40,6 @@ static t_map	*ft_m_pop(t_map **map, t_matrix *matrix)
 	cpt_mx = 0;
 	while (cpt_mx < 4)
 	{
-		if (!(*map)->axis[matrix->pos[cpt_mx].x][-matrix->pos[cpt_mx].y])
-			ft_error();
-		cpt_mx++;
-	}
-	cpt_mx = 0;
-	while (cpt_mx < 4)
-	{
 		(*map)->axis[matrix->pos[cpt_mx].x][-matrix->pos[cpt_mx].y] = 0;
 		cpt_mx++;
 	}
@@ -66,9 +55,9 @@ static t_matrix	*ft_test_iter(t_matrix *mtrx, t_map **map, int *pop)
 		if (mtrx->pos[0].y == (tmp = *ft_m_op("Y ", mtrx, -1)).pos[0].y)
 		{
 			mtrx = ft_transform("1", mtrx, 0);
-			if (mtrx == ft_m_op("prev", mtrx, 0) || \
-				!(mtrx = ft_m_op("prev", mtrx, 0)))
+			if (mtrx == ft_m_op("prev", mtrx, 0))
 				return (NULL);
+			mtrx = ft_m_op("prev", mtrx, 0);
 			*map = ft_m_pop(map, mtrx);
 			*pop = 1;
 		}
@@ -93,8 +82,9 @@ static t_matrix	*ft_iter(t_matrix *mtrx, t_map *map)
 				return (NULL);
 			mtrx = tmp;
 		}
-		if (!mtrx->next || !(mtrx = mtrx->next))
+		if (!mtrx->next)
 			return (mtrx = mtrx->first);
+		mtrx = mtrx->next;
 	}
 	ft_error();
 	return (NULL);
