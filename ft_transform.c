@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 13:10:26 by vpetit            #+#    #+#             */
-/*   Updated: 2017/03/16 17:49:48 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/03/29 19:57:58 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ static t_matrix	*ft_checkshape(t_matrix *matrix)
 
 static t_matrix	*ft_transfmatrix(t_matrix *matrix)
 {
-	matrix = ft_m_op("X ", matrix, -matrix->dim);
-	matrix = ft_m_op("Y ", matrix, matrix->dim);
+	matrix = ft_m_op("X ", matrix, -matrix->dim - 1);
+	matrix = ft_m_op("Y ", matrix, matrix->dim + 1);
 	return (matrix);
 }
 

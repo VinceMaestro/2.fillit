@@ -10,7 +10,7 @@ SRC = main.c \
 		ft_m_op.c \
 		ft_transform.c \
 		ft_getbestshape.c \
-		ft_mapalloc.c \
+		ft_mapalloc.c
 
 LIBDIR = ./libft
 
