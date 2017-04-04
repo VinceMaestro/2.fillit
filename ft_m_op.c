@@ -6,7 +6,7 @@
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/16 17:17:43 by vpetit            #+#    #+#             */
-/*   Updated: 2017/03/16 17:37:33 by vpetit           ###   ########.fr       */
+/*   Updated: 2017/04/04 18:14:07 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,9 @@ t_matrix		*ft_m_op(char *arg, t_matrix *matrix, int num)
 		return (ft_m_xplus(matrix, num));
 	else if (*arg == 'Y' || *arg == 'y')
 		return (ft_m_yplus(matrix, num));
-	else if (!strcmp(arg, "prev"))
+	else if (!ft_strcmp(arg, "prev"))
 		return (ft_m_prev(matrix));
-	else if (!strcmp(arg, "incrdim"))
+	else if (!ft_strcmp(arg, "incrdim"))
 		return (ft_m_increasedim(matrix));
 	ft_error();
 	return (NULL);
